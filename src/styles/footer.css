@@ -1,0 +1,80 @@
+/* =====================================================
+   Footer.css — RS Holidays themed (Bootstrap-first)
+   Clean, minimal custom styles for brand colors & FABs
+===================================================== */
+
+.footer-wrapper {
+  background-color: var(--rs-dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border-top: 3px solid transparent;
+  border-image: var(--rs-gradient-h) 1;
+}
+
+/* ── Links ── */
+.footer-link {
+  color: var(--rs-text-light);
+  font-size: 14px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: var(--rs-red) !important;
+  transform: translateX(4px);
+}
+
+/* ── Contact links hover ── */
+.footer-contact-link {
+  color: var(--rs-text-light);
+  transition: color 0.2s ease;
+}
+
+.footer-contact-link:hover {
+  color: var(--rs-red) !important;
+}
+
+/* ── Social icons hover ── */
+.social-icon {
+  color: #fff;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+  color: var(--rs-red) !important;
+  transform: translateY(-3px);
+}
+
+/* ── Social pill gradient ── */
+.footer-social-pill {
+  background: linear-gradient(135deg,
+      rgba(227, 6, 19, 0.15) 0%,
+      rgba(46, 49, 146, 0.15) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── FAB buttons ── */
+.fab-up {
+  width: 42px;
+  height: 42px;
+  background: var(--rs-gradient);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fab-up:hover {
+  background: var(--rs-gradient-reverse);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--rs-shadow-md);
+}
+
+.fab-whatsapp {
+  width: 52px;
+  height: 52px;
+  background-color: #25d366;
+  z-index: 1000;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.fab-whatsapp:hover {
+  background-color: #128c7e;
+  transform: translateY(-3px) scale(1.05);
+}

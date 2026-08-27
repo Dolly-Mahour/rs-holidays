@@ -1,0 +1,406 @@
+/* =====================================================
+   UpcomingTrips.css — RS Holidays Upcoming Trips Page
+   Clean styles built with Bootstrap and RS design tokens
+===================================================== */
+
+.upcoming-page {
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+
+
+.upcoming-hero-tag {
+  color: #1e3a8a;
+  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.upcoming-hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: #1e3a8a;
+  letter-spacing: -1px;
+}
+
+.upcoming-hero-title .text-script {
+  color: #e30613;
+  font-style: italic;
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+}
+
+.upcoming-hero-subtitle {
+  color: #4b5563;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.hero-img-frame {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.hero-circle-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(227, 6, 19, 0.15) 0%, rgba(46, 49, 146, 0.25) 100%);
+  border: 3px dashed rgba(227, 6, 19, 0.4);
+  z-index: 1;
+}
+
+.hero-main-img {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 6px solid #fff;
+}
+
+/* ── Filter / Search Bar ── */
+.search-filter-card {
+  background: #0b1e36;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(11, 30, 54, 0.2);
+  position: relative;
+  z-index: 10;
+  margin-top: -30px;
+}
+
+.search-select {
+  border-radius: 50rem;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  color: #1f2937;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.search-btn {
+  background: linear-gradient(135deg, #e30613 0%, #b8050f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50rem;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #b8050f 0%, #90040c 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(227, 6, 19, 0.35);
+}
+
+/* ── Adventure Section & Doodle Highlights ── */
+.hand-drawn-oval {
+  position: relative;
+  display: inline-block;
+  padding: 2px 14px;
+  color: #0b1e36;
+}
+
+.hand-drawn-oval::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  border: 2.5px solid #e30613;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  pointer-events: none;
+  transform: rotate(-1.5deg);
+}
+
+/* ── Trip Cards ── */
+.trip-item-card {
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trip-item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+}
+
+.trip-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.trip-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.trip-item-card:hover .trip-img-wrap img {
+  transform: scale(1.06);
+}
+
+.trip-badge-cat {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50rem;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.trip-badge-international {
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+.trip-badge-india {
+  background: #e30613;
+  color: #ffffff;
+}
+
+.trip-wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e30613;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  z-index: 2;
+}
+
+.trip-wishlist-btn:hover {
+  transform: scale(1.15);
+  background-color: #fee2e2;
+}
+
+.view-trip-btn {
+  background: #0b1e36;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 50rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.view-trip-btn:hover {
+  background: #e30613;
+  color: #fff;
+  transform: translateX(2px);
+}
+
+/* ── Trip Cards Carousel ── */
+.trips-carousel-scroll {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 4px 20px 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.trips-carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.trip-carousel-item {
+  flex: 0 0 calc(20% - 1rem);
+  min-width: 220px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 1200px) {
+  .trip-carousel-item {
+    flex: 0 0 calc(25% - 1rem);
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 992px) {
+  .trip-carousel-item {
+    flex: 0 0 calc(33.333% - 0.85rem);
+    min-width: 210px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trip-carousel-item {
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .trip-carousel-item {
+    flex: 0 0 82%;
+    min-width: 240px;
+  }
+}
+
+.carousel-nav-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.carousel-nav-btn:hover {
+  transform: scale(1.08);
+}
+
+.carousel-indicator-btn {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Pagination Indicator Dots ── */
+.indicator-pill {
+  width: 24px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #e30613;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator-btn:hover .indicator-dot {
+  background-color: #9ca3af;
+}
+
+/* ── Promo Banner (Collect moments) ── */
+.moments-banner {
+  background: linear-gradient(135deg, #091a32 0%, #11294d 55%, #b8050f 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(9, 26, 50, 0.25);
+}
+
+.polaroid-frame {
+  background: #ffffff;
+  padding: 8px 8px 24px 8px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.polaroid-frame img {
+  border-radius: 4px;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-1 {
+  transform: rotate(-8deg);
+}
+
+.polaroid-2 {
+  transform: rotate(6deg) translateY(-10px);
+}
+
+.polaroid-3 {
+  transform: rotate(-4deg);
+}
+
+.polaroid-frame:hover {
+  transform: scale(1.08) rotate(0deg);
+  z-index: 10;
+}
+
+/* ── Why Choose Us Features ── */
+.confidence-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.confidence-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.confidence-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.confidence-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Decorative SVGs and lines */
+.dashed-trail {
+  stroke-dasharray: 5, 5;
+}

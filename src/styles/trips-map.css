@@ -1,0 +1,413 @@
+/* =====================================================
+   TripsMap.css — RS Holidays themed
+   Dark map UI with RS red accent replacing old teal
+===================================================== */
+
+:root {
+  --accent: var(--rs-red);
+  --text: #d8e5f2;
+  --muted: var(--rs-dark-muted);
+  --border: var(--rs-dark-border);
+  --card: var(--rs-dark-surface);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  max-width: 1400px;
+  margin: auto;
+  padding: 22px;
+}
+
+.topbar {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.topbar p {
+  margin: 5px 0 0;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--card);
+  color: var(--text);
+}
+
+.btn.primary {
+  border-color: transparent;
+  background: var(--rs-gradient);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn.primary:hover {
+  background: var(--rs-gradient-reverse);
+  box-shadow: var(--rs-shadow-sm);
+}
+
+.btn.danger {
+  color: #fff;
+  background: #7f1d2d;
+  border-color: #be123c;
+}
+
+.panel {
+  /* background: rgba(13, 27, 42, 0.94); */
+  /* border: 1px solid var(--border); */
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  /* background: #081523; */
+  /* color: var(--text); */
+  border-radius: 10px;
+  padding: 10px 11px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--rs-red);
+  box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.15);
+}
+
+.map-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  background: #240707;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+#worldMap {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 420px;
+}
+
+.country {
+  fill: #16314b;
+  stroke: #3a5875;
+  stroke-width: 0.55;
+}
+
+.sphere {
+  fill: #071624;
+  stroke: #36506a;
+  stroke-width: 1;
+}
+
+/* Map pins — RS red accent */
+.pin-core {
+  fill: var(--rs-red);
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: fill 0.2s;
+}
+
+.pin-core:hover {
+  fill: var(--rs-red-light);
+}
+
+.pin-ring {
+  fill: none;
+  stroke: var(--rs-red);
+  stroke-width: 2;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2s ease-out infinite;
+}
+
+.pin.active .pin-core {
+  fill: #facc15;
+  stroke-width: 3;
+}
+
+.pin-label {
+  fill: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #071624;
+  stroke-width: 3px;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  75%,
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.map-status {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(7, 17, 31, 0.88);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.detail {
+  display: none;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+}
+
+.detail.show {
+  display: grid;
+}
+
+.detail h2 {
+  margin: 0 0 4px;
+}
+
+.location-line {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.chip {
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  background: #0a1c2d;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.description {
+  color: #d8e5f2;
+  line-height: 1.6;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.highlight {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 10px;
+  background: #0a1a2a;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.photo {
+  min-height: 150px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0a1a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-align: center;
+  padding: 10px;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manager {
+  display: none;
+}
+
+.manager.show {
+  display: block;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.help {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+
+.location-table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+}
+
+.small-btn {
+  border: 1px solid var(--border);
+  background: #0b1b2b;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin-right: 4px;
+}
+
+.small-btn.delete {
+  border-color: #7f1d1d;
+  color: #fecaca;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+
+  .filters,
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .span-3 {
+    grid-column: span 2;
+  }
+
+  .detail.show {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+
+  .filters,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .span-2,
+  .span-3 {
+    grid-column: span 1;
+  }
+
+  .gallery,
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .app {
+    padding: 12px;
+  }
+}

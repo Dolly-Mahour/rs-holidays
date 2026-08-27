@@ -1,0 +1,139 @@
+/* =====================================================
+   Navbar.css — RS Holidays themed
+   Accent: var(--rs-red), Gradient: var(--rs-gradient)
+===================================================== */
+
+/* ── Link hover ── */
+.nav-link-hover {
+  transition: color 0.3s ease;
+}
+.nav-link-hover:hover {
+  color: var(--rs-red) !important;
+}
+
+/* ── Dropdown item hover ── */
+.dropdown-item-hover {
+  transition: background-color 0.2s, color 0.2s;
+}
+.dropdown-item-hover:hover {
+  background-color: rgba(227, 6, 19, 0.06);
+  color: var(--rs-red) !important;
+}
+
+/* ── Logo ── */
+.logo-icon {
+  height: 50px;
+}
+
+/* ── Responsive font sizes ── */
+.nav-top-text    { font-size: 14px; }
+.nav-bottom-text { font-size: 15px !important; }
+.nav-logo-text   { font-size: 24px; }
+
+/* ── Bottom nav gradient bar ── */
+.nav-bottom-bar {
+  background: var(--rs-gradient) !important;
+}
+
+/* ── Bottom nav text ── */
+.nav-bottom-link {
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+.nav-bottom-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.8);
+  transition: width 0.3s ease;
+}
+.nav-bottom-link:hover::after {
+  width: 100%;
+}
+.nav-bottom-link:hover {
+  opacity: 0.85;
+}
+
+/* ── Search input border ── */
+.nav-search-input {
+  border-color: var(--rs-red) !important;
+}
+.nav-search-input:focus {
+  box-shadow: 0 0 0 3px rgba(227,6,19,0.15) !important;
+  border-color: var(--rs-red) !important;
+}
+
+/* ── Contact CTA button (theme gradient) ── */
+.nav-cta-btn {
+  background: var(--rs-gradient) !important;
+  color: #fff !important;
+  border: none !important;
+  transition: var(--rs-transition);
+  box-shadow: var(--rs-shadow-sm);
+}
+
+.nav-cta-btn:hover,
+.nav-cta-btn:focus {
+  background: var(--rs-gradient-reverse) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: var(--rs-shadow-md);
+}
+
+.nav-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Mobile hamburger button ── */
+.nav-hamburger {
+  background: var(--rs-gradient) !important;
+  border: none !important;
+  color: #fff !important;
+  transition: var(--rs-transition);
+}
+
+.nav-hamburger:hover {
+  background: var(--rs-gradient-reverse) !important;
+}
+
+/* ── Mobile logo text gradient ── */
+.nav-mobile-logo {
+  background: var(--rs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+/* ── Chevron animation ── */
+.chevron-icon {
+  transition: transform 0.3s ease;
+}
+.chevron-icon.open {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown menu ── */
+.nav-dropdown {
+  border-top: 3px solid var(--rs-red) !important;
+  border-radius: 0 0 var(--rs-radius-sm) var(--rs-radius-sm) !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 992px) {
+  .nav-top-text    { font-size: 13px; }
+  .nav-bottom-text { font-size: 14px !important; }
+  .nav-logo-text   { font-size: 20px; }
+}
+
+@media (max-width: 576px) {
+  .nav-top-text    { font-size: 12px; }
+  .nav-bottom-text { font-size: 13px !important; }
+  .nav-logo-text   { font-size: 18px; }
+}

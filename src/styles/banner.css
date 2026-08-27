@@ -1,0 +1,73 @@
+/* =====================================================
+   Banner.css — RS Holidays themed
+===================================================== */
+
+.banner {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  width: 100%;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.315),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 0.267),
+    0 0 0 1px rgba(227, 6, 19, 0.08);  /* subtle RS red glow */
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 0 1px rgba(227, 6, 19, 0.18);
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--rs-gradient-h);
+  opacity: 0.6;
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(227, 6, 19, 0.3),
+    transparent,
+    rgba(46, 49, 146, 0.3)
+  );
+}
+
+/* ── Balloon background ── */
+.balloon-bg {
+  background-image: url('/images/balloons.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

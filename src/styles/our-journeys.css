@@ -1,0 +1,14 @@
+/* =====================================================
+   OurJourneys.css — RS Holidays themed
+   Add styles here as the OurJourneys section is built
+===================================================== */
+
+.our-journeys-section {
+  position: relative;
+  width: 100%;
+}
+
+.journeys-subtitle {
+  color: var(--rs-text-muted);
+  font-size: 16px;
+}

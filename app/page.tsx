@@ -1,69 +1,107 @@
-import Image from "next/image";
+import React from "react";
+// import "../styles/Home.css";
+import ReusableTripsCarousel from "../src/components/reusable-trips-carousel";
+import Banner from "../src/components/banner";
+import WhyChooseUse from "../src/components/why-choose-us";
+import OurJourneys from "../src/components/our-journeys";
+// import Map from "../src/components/t";
+import TripsMap from "../src/components/trips-map";
+interface trips {
+  id: number;
+  title: string;
+  price: string;
+  image: string;
+}
+const Home = () => {
+  const indiaTrips:trips[] = [
+    {
+      id: 1,
+      title: "Leh Ladakh",
+      price: "15,800",
+      image: "/images/ladakh.png",
+    },
+    { id: 2, title: "Spiti", price: "17,999", image: "/images/spiti.png" },
+    { id: 3, title: "Kashmir", price: "24,499", image: "/images/kashmir.png" },
+    {
+      id: 4,
+      title: "Meghalaya",
+      price: "13,499",
+      image: "/images/meghalaya.png",
+    },
+    { id: 5, title: "Zanskar", price: "9,499", image: "/images/zanskar.png" },
+    { id: 6, title: "Himachal", price: "7,999", image: "/images/himachal.png" },
+    { id: 7, title: "Sikkim", price: "21,499", image: "/images/sikkim.png" },
+  ];
 
-export default function Home() {
+  const internationalTrips:trips[] = [
+    { id: 1, title: "Bali", price: "45,800", image: "/images/bali.png" },
+    {
+      id: 2,
+      title: "New Zealand",
+      price: "89,999",
+      image: "/images/newzealand.png",
+    },
+    { id: 3, title: "Dubai", price: "54,499", image: "/images/dubai.png" },
+    {
+      id: 4,
+      title: "Thailand",
+      price: "32,499",
+      image: "/images/thailand.png",
+    },
+    {
+      id: 5,
+      title: "Maldives",
+      price: "79,499",
+      image: "/images/maldives.png",
+    },
+    {
+      id: 6,
+      title: "Singapore",
+      price: "49,999",
+      image: "/images/singapore.png",
+    },
+    { id: 7, title: "Vietnam", price: "38,499", image: "/images/vietnam.png" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="position-relative">
+      <div className="">
+        <ReusableTripsCarousel
+          trips={internationalTrips}
+          bannerTitle="International Trips"
+          bannerSubtitle="Discover the World Beyond Borders"
+          bannerVideo="/videos/international-trips-bg.mp4"
+          bannerClass="international-trips-banner"
+          currencySymbol="₹"
+          autoScrollSpeed={4000}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
+      <Banner />
+      <TripsMap />
+      <div>
+        <ReusableTripsCarousel
+          trips={indiaTrips}
+          bannerTitle="India Trips"
+          bannerSubtitle="A Journey Through Time, Colour And Culture"
+          bannerVideo="/videos/waterfall.mp4"
+          bannerClass="india-trips-banner"
+          currencySymbol="₹"
+        />
+      </div>
+      <WhyChooseUse />
+      <div>
+        <video
+          className="w-100 object-fit-cover h-500px row g-0 p-lg-5"
+          src="/videos/banner-video.mp4"
+          autoPlay
+          muted
+          loop
+        ></video>
+      </div>
+
+      <OurJourneys />
     </div>
   );
-}
+};
+
+export default Home;

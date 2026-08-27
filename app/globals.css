@@ -1,26 +1,683 @@
-@import "tailwindcss";
+/* =====================================================
+   RS HOLIDAYS — GLOBAL STYLESHEET
+   Design tokens, resets, typography, shared utilities
+   Carousel layout styles (shared across sections)
+===================================================== */
+
+/* =====================================================
+   GOOGLE FONTS
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* =====================================================
+   RS HOLIDAYS DESIGN TOKENS
+===================================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Brand Colors (from logo) ── */
+  --rs-red: #E30613;
+  --rs-red-dark: #B8050F;
+  --rs-red-light: #ff2a38;
+  --rs-blue: #2E3192;
+  --rs-blue-dark: #1E2170;
+  --rs-blue-light: #4B50C4;
+
+  /* ── Gradients ── */
+  --rs-gradient: linear-gradient(135deg, #E30613 0%, #2E3192 100%);
+  --rs-gradient-reverse: linear-gradient(135deg, #2E3192 0%, #E30613 100%);
+  --rs-gradient-h: linear-gradient(90deg, #E30613 0%, #2E3192 100%);
+  --rs-gradient-subtle: linear-gradient(135deg, rgba(227, 6, 19, 0.12) 0%, rgba(46, 49, 146, 0.12) 100%);
+
+  /* ── Neutrals ── */
+  --rs-dark: #0D1117;
+  --rs-dark-surface: #161B22;
+  --rs-dark-border: #2c3a4a;
+  --rs-dark-muted: #7d9ab0;
+  --rs-light: #F8F9FA;
+  --rs-white: #ffffff;
+
+  /* ── Text ── */
+  --rs-text: #1A1A2E;
+  --rs-text-muted: #6C757D;
+  --rs-text-light: #c9d1d3;
+
+  /* ── Accent (replaces legacy teal #00bcd4) ── */
+  --rs-accent: var(--rs-red);
+  --rs-accent-hover: var(--rs-red-dark);
+
+  /* ── Shadows ── */
+  --rs-shadow-sm: 0 2px 8px rgba(227, 6, 19, 0.10);
+  --rs-shadow-md: 0 8px 24px rgba(227, 6, 19, 0.15);
+  --rs-shadow-lg: 0 20px 50px rgba(46, 49, 146, 0.20);
+
+  /* ── Border Radius ── */
+  --rs-radius-sm: 8px;
+  --rs-radius-md: 12px;
+  --rs-radius-lg: 20px;
+  --rs-radius-xl: 32px;
+
+  /* ── Transitions ── */
+  --rs-transition: all 0.3s ease;
+  --rs-transition-fast: all 0.18s ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--rs-text);
+  background-color: var(--rs-light);
+}
+
+/* =====================================================
+   SHARED UTILITY CLASSES
+===================================================== */
+
+/* Font */
+.font-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Font sizes */
+.fs-7 {
+  font-size: 13px;
+}
+
+.fs-8 {
+  font-size: 12px;
+}
+
+/* Spacing */
+.letter-spacing {
+  letter-spacing: 0.5px;
+}
+
+/* Colors */
+.text-light-gray {
+  color: var(--rs-text-light);
+}
+
+/* Height utility */
+.h-500px {
+  height: 500px;
+}
+
+.h-100px {
+  height: 100px;
+}
+
+.h-80px {
+  height: 80px;
+}
+
+
+/* Background */
+.bg-grey {
+  background-color: #e8e9ec;
+}
+
+/* Text shadow */
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Scrollbar hiding */
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* RS Brand overrides for Bootstrap */
+.text-rs-red {
+  color: var(--rs-red) !important;
+}
+
+.text-rs-blue {
+  color: var(--rs-blue) !important;
+}
+
+.bg-rs-red {
+  background-color: var(--rs-red) !important;
+}
+
+.bg-rs-blue {
+  background-color: var(--rs-blue) !important;
+}
+
+.bg-rs-gradient {
+  background: var(--rs-gradient) !important;
+}
+
+.gradient-rs-text {
+  background: -webkit-linear-gradient(135deg,#2e3192, #ed1b24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.z-2000{
+  z-index: 1000 !important;
+}
+/* Shared hover link */
+.rs-link-hover {
+  transition: color var(--rs-transition-fast);
+}
+
+.rs-link-hover:hover {
+  color: var(--rs-red) !important;
+}
+
+/* =====================================================
+   BOOTSTRAP ACCENT OVERRIDES (replaces teal #00bcd4)
+===================================================== */
+
+.text-info {
+  color: var(--rs-red) !important;
+}
+
+.bg-info {
+  background: var(--rs-gradient) !important;
+}
+
+.border-info {
+  border-color: var(--rs-red) !important;
+}
+
+.btn-outline-info {
+  color: var(--rs-red);
+  border-color: var(--rs-red);
+  transition: var(--rs-transition);
+}
+
+.btn-outline-info:hover,
+.btn-outline-info:focus {
+  background-color: var(--rs-red);
+  border-color: var(--rs-red);
+  color: #fff;
+}
+
+.btn-info {
+  background: var(--rs-gradient);
+  border-color: transparent;
+  color: #fff;
+  transition: var(--rs-transition);
+}
+
+.btn-info:hover,
+.btn-info:focus {
+  background: var(--rs-gradient-reverse);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--rs-shadow-md);
+}
+
+/* =====================================================
+   MAIN CAROUSEL SECTION
+===================================================== */
+
+.reusable-trips-section {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  overflow: hidden;
+}
+
+/* =========================
+   VIDEO BACKGROUND
+========================= */
+
+.trips-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.trips-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg,
+      rgba(227, 6, 21, 0.349) 0%,
+      rgba(46, 49, 146, 0.61) 100%);
+  z-index: 1;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.trips-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 720px;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   HEADER
+========================= */
+.fs-8px{
+  font-size: 10px;
+}
+.trips-header {
+  position: relative;
+  z-index: 20;
+  color: white;
+}
+
+.trips-title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.trips-subtitle {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.trips-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin-top: 50px;
+  overflow: visible;
+  perspective: 1200px;
+}
+
+/* =========================
+   COMMON CARD
+========================= */
+
+.trip-carousel-card {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 175px;
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s ease;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.trip-image-wrapper {
+  width: 100%;
+  height: 255px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #eee;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.trip-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* =========================
+   CARD POSITIONS
+========================= */
+
+.trip-position-0 {
+  transform: translateX(-50%) translateY(35px) scale(1.05);
+  z-index: 10;
+}
+
+.trip-position--1 {
+  transform: translateX(calc(-50% - 175px)) translateY(20px) rotate(-4deg) scale(0.96);
+  z-index: 9;
+}
+
+.trip-position-1 {
+  transform: translateX(calc(-50% + 175px)) translateY(20px) rotate(4deg) scale(0.96);
+  z-index: 9;
+}
+
+.trip-position--2 {
+  transform: translateX(calc(-50% - 350px)) translateY(30px) rotate(-7deg) scale(0.9);
+  z-index: 8;
+}
+
+.trip-position-2 {
+  transform: translateX(calc(-50% + 350px)) translateY(30px) rotate(7deg) scale(0.9);
+  z-index: 8;
+}
+
+.trip-position--3 {
+  width: 230px;
+  transform: translateX(calc(-50% - 525px)) translateY(-5px) rotate(-13deg) scale(1);
+  z-index: 7;
+}
+
+.trip-position-3 {
+  width: 230px;
+  transform: translateX(calc(-50% + 525px)) translateY(-5px) rotate(13deg) scale(1);
+  z-index: 7;
+}
+
+.trip-position--3 .trip-image-wrapper,
+.trip-position-3 .trip-image-wrapper {
+  height: 300px;
+  border-radius: 24px;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.trip-info {
+  width: 220px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 48px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.trip-number {
+  color: var(--rs-text);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.trip-title {
+  margin-top: 12px;
+  color: var(--rs-text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.trips-controls {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: -5px;
+}
+
+.trip-control-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: var(--rs-gradient);
+  color: #fff;
+  font-size: 19px;
+  cursor: pointer;
+  transition: var(--rs-transition);
+  box-shadow: var(--rs-shadow-sm);
+}
+
+.trip-control-btn:hover {
+  background: var(--rs-gradient-reverse);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+  box-shadow: var(--rs-shadow-md);
+}
+
+/* =====================================================
+   RESPONSIVE — LARGE SCREEN
+===================================================== */
+
+@media (min-width: 1400px) {
+  .reusable-trips-section {
+    min-height: 500px;
+  }
+
+  .trips-content {
+    min-height: 760px;
+  }
+
+  .trips-carousel {
+    height: 400px;
+    margin-top: 30px;
+  }
+
+  .trip-position--3 {
+    transform: translateX(calc(-50% - 570px)) translateY(-5px) rotate(-14deg) scale(1);
+  }
+
+  .trip-position-3 {
+    transform: translateX(calc(-50% + 570px)) translateY(-5px) rotate(14deg) scale(1);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =====================================================
+   RESPONSIVE — LAPTOP
+===================================================== */
+
+@media (max-width: 1200px) {
+  .trips-title {
+    font-size: 36px;
+  }
+
+  .trip-position--3 {
+    width: 230px;
+    transform: translateX(calc(-50% - 440px)) translateY(0) rotate(-11deg);
+  }
+
+  .trip-position-3 {
+    width: 230px;
+    transform: translateX(calc(-50% + 440px)) translateY(0) rotate(11deg);
+  }
+
+  .trip-position--3 .trip-image-wrapper,
+  .trip-position-3 .trip-image-wrapper {
+    height: 430px;
+  }
+
+  .trip-position--2 {
+    transform: translateX(calc(-50% - 300px)) translateY(15px) rotate(-6deg) scale(0.92);
+  }
+
+  .trip-position-2 {
+    transform: translateX(calc(-50% + 300px)) translateY(15px) rotate(6deg) scale(0.92);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE — TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+  .reusable-trips-section {
+    min-height: 600px;
+    border-radius: 0;
+  }
+
+  .trips-content {
+    min-height: 600px;
+  }
+
+  .trips-title {
+    font-size: 30px;
+  }
+
+  .trips-subtitle {
+    font-size: 15px;
+    padding: 0 20px;
+  }
+
+  .trips-carousel {
+    height: 400px;
+    margin-top: 20px;
+  }
+
+  .trip-carousel-card {
+    width: 155px;
+  }
+
+  .trip-image-wrapper {
+    height: 225px;
+    border-radius: 18px;
+  }
+
+  .trip-position-0 {
+    width: 175px;
+    transform: translateX(-50%) translateY(30px) scale(1);
+  }
+
+  .trip-position--1 {
+    transform: translateX(calc(-50% - 140px)) translateY(20px) rotate(-5deg) scale(0.9);
+  }
+
+  .trip-position-1 {
+    transform: translateX(calc(-50% + 140px)) translateY(20px) rotate(5deg) scale(0.9);
+  }
+
+  .trip-position--2 {
+    transform: translateX(calc(-50% - 260px)) translateY(25px) rotate(-7deg) scale(0.82);
+  }
+
+  .trip-position-2 {
+    transform: translateX(calc(-50% + 260px)) translateY(25px) rotate(7deg) scale(0.82);
+  }
+
+  .trip-position--3,
+  .trip-position-3 {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .trip-info {
+    margin-top: 32px;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE — MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+  .reusable-trips-section {
+    min-height: 520px;
+    border-radius: 0;
+  }
+
+  .trips-content {
+    min-height: 520px;
+    padding-top: 25px;
+  }
+
+  .trips-title {
+    font-size: 24px;
+  }
+
+  .trips-subtitle {
+    font-size: 13px;
+  }
+
+  .trips-carousel {
+    height: 340px;
+    margin-top: 15px;
+  }
+
+  .trip-carousel-card {
+    width: 135px;
+  }
+
+  .trip-image-wrapper {
+    height: 195px;
+    border-radius: 16px;
+  }
+
+  .trip-position-0 {
+    width: 150px;
+    transform: translateX(-50%) translateY(25px);
+  }
+
+  .trip-position--1 {
+    transform: translateX(calc(-50% - 112px)) translateY(25px) rotate(-5deg) scale(0.85);
+  }
+
+  .trip-position-1 {
+    transform: translateX(calc(-50% + 112px)) translateY(25px) rotate(5deg) scale(0.85);
+  }
+
+  .trip-position--2,
+  .trip-position-2,
+  .trip-position--3,
+  .trip-position-3 {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .trip-info {
+    width: 180px;
+    margin-top: 25px;
+  }
+
+  .trip-number {
+    font-size: 14px;
+  }
+
+  .trip-title {
+    margin-top: 7px;
+    font-size: 13px;
+  }
+
+  .trip-control-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
 }
