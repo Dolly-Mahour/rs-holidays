@@ -30,7 +30,7 @@
 .events-hero {
   position: relative;
   padding: 50px 0 60px;
-  background: 
+  background:
     radial-gradient(circle at 10% 20%, rgba(227, 6, 19, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 90% 60%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
     #FAFBFE;
@@ -205,8 +205,8 @@
 .collage-top-right {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  height: 220px;
-  border-radius: 140px 140px 140px 40px;
+  height: 180px;
+  border-radius: 160px 160px 160px 40px;
 }
 
 .collage-bottom-right {
@@ -254,8 +254,13 @@
 }
 
 @keyframes floatPlane {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-12px) rotate(-8deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-12px) rotate(-8deg);
+  }
 }
 
 /* =========================================================
@@ -445,11 +450,13 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px 4px 20px 4px;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .events-carousel-track::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
+  /* Chrome/Safari */
 }
 
 .events-carousel-nav-btn {
@@ -552,9 +559,17 @@
   transform: scale(1.15) rotate(5deg);
 }
 
-.events-card-action-icon.purple { background: #6366F1; }
-.events-card-action-icon.red { background: #EF4444; }
-.events-card-action-icon.magenta { background: #EC4899; }
+.events-card-action-icon.purple {
+  background: #6366F1;
+}
+
+.events-card-action-icon.red {
+  background: #EF4444;
+}
+
+.events-card-action-icon.magenta {
+  background: #EC4899;
+}
 
 .events-card-content {
   padding: 24px 16px 16px;
@@ -885,9 +900,6 @@
   box-shadow: 0 14px 30px rgba(142, 45, 226, 0.5);
 }
 
-/* =========================================================
-   EVENT INQUIRY / DETAILS MODAL
-========================================================= */
 .events-modal-overlay {
   position: fixed;
   top: 0;
@@ -1001,10 +1013,21 @@
     width: 100%;
   }
 
-  .collage-top-left { height: 130px; }
-  .collage-center-main { height: 160px; }
-  .collage-top-right { height: 150px; }
-  .collage-bottom-right { height: 140px; }
+  .collage-top-left {
+    height: 130px;
+  }
+
+  .collage-center-main {
+    height: 160px;
+  }
+
+  .collage-top-right {
+    height: 150px;
+  }
+
+  .collage-bottom-right {
+    height: 140px;
+  }
 
   .events-card {
     flex: 0 0 220px;

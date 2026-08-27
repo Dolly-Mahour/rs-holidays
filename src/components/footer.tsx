@@ -186,7 +186,7 @@ const Footer = () => {
       </div>
 
       {/* Floating Action Buttons */}
-      <div className="position-fixed bottom-0 end-0 p-3 p-md-4 d-flex flex-column gap-3 z-3">
+      <div className="fab-container">
         <button
           className="fab-up border-0 text-white rounded-circle d-flex align-items-center justify-content-center shadow"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

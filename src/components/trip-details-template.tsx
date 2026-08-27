@@ -21,7 +21,7 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
   return (
     <main className="trip-details-wrapper">
       <div className="trip-container">
-        
+
         {/* =========================================
             HEADER - BACK LINK
         ========================================= */}
@@ -39,8 +39,8 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
         {/* =========================================
             HERO SECTION
         ========================================= */}
-        {/* <section className="trip-hero-section">
-          
+        <section className="trip-hero-section">
+
           <div className="trip-hero-left">
             <div className="trip-location-tag">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -111,7 +111,7 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
 
           <div className="trip-hero-graphic-wrapper">
             <div className="trip-dots-pattern"></div>
-            
+
             <div className="trip-arch-outer-ring">
               <div className="trip-hero-img-frame">
                 <img
@@ -140,12 +140,12 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
 
           </div>
 
-        </section> */}
+        </section>
 
         {/* =========================================
             TRIP HIGHLIGHTS SECTION
         ========================================= */}
-        {/* <section className="trip-highlights-section">
+        <section className="trip-highlights-section">
           <div className="trip-highlights-header">
             <div className="trip-section-tag">
               <span>TRIP HIGHLIGHTS</span>
@@ -199,14 +199,14 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
               );
             })}
           </div>
-        </section> */}
+        </section>
 
         {/* =========================================
             CALL TO ACTION BANNER
         ========================================= */}
-        {/* <section className="trip-cta-section">
+        <section className="trip-cta-section">
           <div className="trip-cta-card">
-            
+
             <span className="trip-cta-sparkle trip-cta-sparkle-1">✦</span>
             <span className="trip-cta-sparkle trip-cta-sparkle-2">✦</span>
 
@@ -265,7 +265,7 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
             </div>
 
           </div>
-        </section> */}
+        </section>
 
       </div>
     </main>
