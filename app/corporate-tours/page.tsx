@@ -113,7 +113,7 @@ const CorporateTours = () => {
                 <div className="hero-image-shape"></div>
 
                 <img
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85"
+                  src="images/corporate-tour.png"
                   alt="Corporate team travelling"
                 />
 

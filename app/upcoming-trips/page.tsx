@@ -1,8 +1,7 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import "../../src/styles/upcoming-trips.css";
-import { useRef } from "react";
 
 const tripPackages = [
   {
@@ -194,6 +193,73 @@ const features = [
     ),
   },
 ];
+const heroSlides = [
+  {
+    id: 1,
+    background: "/images/ladakh.png",
+    label: "TRAVEL WITH US",
+    title: "EXPLORE",
+    subtitle: "LADAKH",
+    description:
+      "Experience breathtaking mountains, ancient monasteries and unforgettable Himalayan adventures.",
+    cards: [
+      {
+        image: "/images/kashmir.png",
+        location: "INDIA",
+        title: "Kashmir",
+      },
+      {
+        image: "/images/spiti.png",
+        location: "INDIA",
+        title: "Spiti Valley",
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    background: "/images/kashmir.png",
+    label: "DISCOVER",
+    title: "PARADISE",
+    subtitle: "KASHMIR",
+    description:
+      "Discover beautiful valleys, peaceful lakes and the incredible landscapes of Kashmir.",
+    cards: [
+      {
+        image: "/images/ladakh.png",
+        location: "INDIA",
+        title: "Ladakh",
+      },
+      {
+        image: "/images/spiti.png",
+        location: "INDIA",
+        title: "Spiti Valley",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    background: "/images/spiti.png",
+    label: "ADVENTURE AWAITS",
+    title: "EXPLORE",
+    subtitle: "SPITI",
+    description:
+      "Journey through dramatic mountains, remote villages and unforgettable Himalayan roads.",
+    cards: [
+      {
+        image: "/images/ladakh.png",
+        location: "INDIA",
+        title: "Ladakh",
+      },
+      {
+        image: "/images/kashmir.png",
+        location: "INDIA",
+        title: "Kashmir",
+      },
+    ],
+  },
+];
 
 const UpcomingTrips = () => {
   const [selectedDestination, setSelectedDestination] =
@@ -202,9 +268,20 @@ const UpcomingTrips = () => {
   const [selectedDuration, setSelectedDuration] = useState("Duration");
   const [wishlist, setWishlist] = useState<Record<number, boolean>>({});
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
-const carouselRef = useRef<HTMLDivElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
   const totalIndicators = 4;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveHeroSlide((current) => {
+        return (current + 1) % heroSlides.length;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+  const currentHero = heroSlides[activeHeroSlide];
 
   const toggleWishlist = (id: number) => {
     setWishlist((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -235,7 +312,7 @@ const carouselRef = useRef<HTMLDivElement | null>(null);
     carouselRef.current.scrollBy({ left: step, behavior: "smooth" });
   };
 
-  const scrollToIndex = (index:number) => {
+  const scrollToIndex = (index: number) => {
     if (!carouselRef.current) return;
     const { scrollWidth, clientWidth } = carouselRef.current;
     const maxScroll = scrollWidth - clientWidth;
@@ -247,15 +324,107 @@ const carouselRef = useRef<HTMLDivElement | null>(null);
   return (
     <div className="upcoming-page">
       {/* ===================================================
-          1. HERO SECTION
-      =================================================== */}
-      <section className="upcoming-hero bg-danger position-relative">
-        <div className="w-100">
-          <img
-            className="w-100"
-            src="/images/upcoming-trips-banner.png"
-            alt="Upcoming Trips Banner"
+    1. HERO CAROUSEL
+=================================================== */}
+      <section className="upcoming-hero position-relative overflow-hidden">
+        {/* ================================================
+      FULL SCREEN BACKGROUND SLIDES
+  ================================================= */}
+
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`hero-bg-slide ${
+              activeHeroSlide === index ? "active" : ""
+            }`}
+            style={{
+              backgroundImage: `url(${slide.background})`,
+            }}
           />
+        ))}
+
+        {/* Dark / Teal Overlay */}
+        <div className="upcoming-hero-overlay" />
+
+        {/* ================================================
+      HERO CONTENT
+  ================================================= */}
+
+        <div className="container position-relative h-100">
+          <div className="row align-items-center h-100">
+            {/* ============================================
+          LEFT CONTENT
+      ============================================= */}
+
+            <div className="col-lg-6 position-relative z-3">
+              <div
+                key={`content-${currentHero.id}`}
+                className="upcoming-hero-content"
+              >
+                <span className="upcoming-hero-label">{currentHero.label}</span>
+
+                <h1>
+                  {currentHero.title}
+                  <br />
+                  <span>{currentHero.subtitle}</span>
+                </h1>
+
+                <p>{currentHero.description}</p>
+
+                <Link href="/group-tours" className="btn upcoming-hero-btn">
+                  Explore Trips <span>→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* ============================================
+          RIGHT DESTINATION CARDS
+      ============================================= */}
+
+            <div className="col-lg-6 position-relative z-3">
+              <div
+                key={`cards-${currentHero.id}`}
+                className="upcoming-destination-cards"
+              >
+                {currentHero.cards.map((card, index) => (
+                  <div
+                    key={card.title}
+                    className={`upcoming-destination-card ${
+                      index === 0 ? "card-one" : "card-two"
+                    }`}
+                  >
+                    <img src={card.image} alt={card.title} />
+
+                    <div className="destination-card-overlay" />
+
+                    <div className="destination-card-content">
+                      <span>{card.location}</span>
+
+                      <h4>{card.title}</h4>
+
+                      <small>★★★★★</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ================================================
+      HERO DOTS
+  ================================================= */}
+
+        <div className="upcoming-hero-dots">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={activeHeroSlide === index ? "active" : ""}
+              onClick={() => setActiveHeroSlide(index)}
+              aria-label={`Go to hero slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
