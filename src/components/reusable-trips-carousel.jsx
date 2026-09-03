@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../src/styles/reusable-trips-carousel.css";
 
@@ -78,17 +79,15 @@ const ReusableTripsCarousel = ({
    *  3 = far right
    */
   const getPosition = (index) => {
-    let position = index - activeIndex;
+    const n = trips.length;
+    let diff = index - activeIndex;
 
-    if (position > 3) {
-      position -= trips.length;
+    diff = ((diff % n) + n) % n;
+    if (diff > n / 2) {
+      diff -= n;
     }
 
-    if (position < -3) {
-      position += trips.length;
-    }
-
-    return position;
+    return diff;
   };
 
   /*
@@ -152,29 +151,57 @@ const ReusableTripsCarousel = ({
           {trips.map((trip, index) => {
 
             const position = getPosition(index);
+            const isVisible = Math.abs(position) <= 3;
+
+            if (!isVisible) return null;
+
+            const stateSlug = trip.state
+              ? trip.state.toLowerCase().split("/")[0].trim().replace(/\s+/g, "-")
+              : "himachal-pradesh";
+            
+            const pkgSlug = trip.slug || encodeURIComponent((trip.title || "").toLowerCase().replace(/\s+/g, "-"));
+
+            const stateDestinationUrl = `/states/${stateSlug}`;
 
             return (
               <div
                 key={trip.id ?? index}
                 className={`trip-carousel-card trip-position-${position}`}
+                onClick={() => {
+                  if (position !== 0) {
+                    setActiveIndex(index);
+                  }
+                }}
               >
 
                 {/* IMAGE */}
 
                 <div className="trip-image-wrapper">
-
-                  <img
-                    src={trip.image}
-                    alt={trip.title || `Trip ${index + 1}`}
-                  />
-
+                  <Link href={trip.state ? stateDestinationUrl : `/packages/${pkgSlug}`}>
+                    <img
+                      src={trip.image}
+                      alt={trip.title || `Trip ${index + 1}`}
+                    />
+                  </Link>
                 </div>
 
 
                 {/* INFORMATION */}
 
-                {(trip.number || trip.title) && (
+                {(trip.number || trip.title || trip.state || trip.price) && (
                   <div className="trip-info">
+
+                    {trip.state && (
+                      <div className="mb-1">
+                        <Link
+                          href={stateDestinationUrl}
+                          className="badge bg-rs-blue text-white rounded-pill px-2 py-1 text-decoration-none shadow-sm d-inline-block hover-scale"
+                          style={{ fontSize: "11px" }}
+                        >
+                          📍 {trip.state}
+                        </Link>
+                      </div>
+                    )}
 
                     {trip.number && (
                       <div className="trip-number">
@@ -183,9 +210,12 @@ const ReusableTripsCarousel = ({
                     )}
 
                     {trip.title && (
-                      <div className="trip-title">
+                      <Link
+                        href={trip.state ? stateDestinationUrl : `/packages/${pkgSlug}`}
+                        className="trip-title fw-bold text-decoration-none text-dark d-block"
+                      >
                         {trip.title}
-                      </div>
+                      </Link>
                     )}
 
                   </div>

@@ -10,8 +10,33 @@ const internationalTrips = [
 ];
 
 const indiaTrips = [
-  "Ladakh", "Spiti Valley", "Zanskar", "Meghalaya", "Kashmir",
-  "Himachal Pradesh", "Andaman", "Kerala", "Rajasthan", "Nagaland"
+  "Kheerganga Trek",
+  "Jispa Getaway",
+  "Manali-Leh-Srinagar",
+  "Sissu-Kasol Trip",
+  "Himachal Explorer",
+  "Zanskar Expedition",
+  "Triund Trek",
+  "Triund-Bir Adventure",
+  "Ladakh & Turtuk",
+  "Winter Spiti",
+  "Sainj Valley",
+  "Jibhi Escape",
+  "Bir Paragliding",
+  "Yulla Kanda Trek",
+  "Valley of Flowers",
+  "Mukteshwar Retreat",
+  "Chopta-Deoriatal Trek",
+  "Chakrata Getaway",
+  "Auli-Joshimath Trip",
+  "Kashmir Paradise",
+  "Rajasthan Backpacking",
+  "Udaipur-Abu Trip",
+  "Udaipur-Kumbhalgarh",
+  "Jaisalmer-Longewala",
+  "Kerala Backpacking",
+  "Ooty-Coorg Escape",
+  "Meghalaya Backpacking",
 ];
 
 const specialTrips = [
@@ -31,14 +56,14 @@ const Footer = () => {
         {/* Top Navigation Links */}
         <div className="row text-start mb-4 g-4">
           {/* International Trips */}
-          <div className="col-6 col-md-3">
+          <div className="col-6 col-lg-2">
             <h5 className="fs-6 fw-bold mb-3 text-white text-uppercase tracking-wider">
               International Trips
             </h5>
             <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
               {internationalTrips.map((trip) => (
                 <li key={trip}>
-                  <a href="#" className="footer-link text-decoration-none">
+                  <a href={`/places/${encodeURIComponent(trip)}`} className="footer-link text-decoration-none">
                     {trip}
                   </a>
                 </li>
@@ -46,24 +71,50 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* India Trips */}
-          <div className="col-6 col-md-3">
+          {/* India Trips (Divided into 3 non-scrollable columns) */}
+          <div className="col-12 col-lg-6">
             <h5 className="fs-6 fw-bold mb-3 text-white text-uppercase tracking-wider">
               India Trips
             </h5>
-            <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
-              {indiaTrips.map((trip) => (
-                <li key={trip}>
-                  <a href="#" className="footer-link text-decoration-none">
-                    {trip}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="row g-2">
+              <div className="col-6 col-md-4">
+                <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
+                  {indiaTrips.slice(0, 9).map((trip) => (
+                    <li key={trip}>
+                      <a href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/ /g, '-'))}`} className="footer-link text-decoration-none">
+                        {trip}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="col-6 col-md-4">
+                <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
+                  {indiaTrips.slice(9, 18).map((trip) => (
+                    <li key={trip}>
+                      <a href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/ /g, '-'))}`} className="footer-link text-decoration-none">
+                        {trip}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="col-6 col-md-4">
+                <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
+                  {indiaTrips.slice(18, 27).map((trip) => (
+                    <li key={trip}>
+                      <a href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/ /g, '-'))}`} className="footer-link text-decoration-none">
+                        {trip}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* RS Holidays Special */}
-          <div className="col-6 col-md-3">
+          <div className="col-6 col-lg-2">
             <h5 className="fs-6 fw-bold mb-3 text-white text-uppercase tracking-wider">
               RS Holidays Special
             </h5>
@@ -79,7 +130,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="col-6 col-md-3">
+          <div className="col-6 col-lg-2">
             <h5 className="fs-6 fw-bold mb-3 text-white text-uppercase tracking-wider">
               Quick Links
             </h5>

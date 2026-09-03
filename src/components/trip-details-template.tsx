@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { getTripData, TripData } from "../types/tripsData";
+import { getPackageBySlug } from "@/src/data/packagesData";
 import "../styles/trip-details.css";
 
 interface TripDetailsTemplateProps {
@@ -12,6 +13,7 @@ interface TripDetailsTemplateProps {
 
 export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDetailsTemplateProps) {
   const trip = tripData || getTripData(slug);
+  const pkg = getPackageBySlug(slug);
 
   // Split title into main word and accent word
   const titleParts = trip.title.split(" ");
@@ -200,6 +202,58 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
             })}
           </div>
         </section>
+
+        {/* =========================================
+            DAY-WISE ITINERARY & NEED TO KNOW
+        ========================================= */}
+        {pkg && pkg.itinerary && pkg.itinerary.length > 0 && (
+          <section className="trip-itinerary-details-section my-5">
+            <div className="row g-4">
+              {/* Day-Wise Itinerary */}
+              <div className="col-12 col-lg-7">
+                <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+                  <span className="text-danger fw-bold text-uppercase fs-8 d-block mb-1">
+                    DAY-BY-DAY ITINERARY
+                  </span>
+                  <h3 className="fw-bold text-dark mb-4">Detailed Tour Schedule</h3>
+
+                  <div className="d-flex flex-column gap-3">
+                    {pkg.itinerary.map((dayItem, idx) => (
+                      <div key={idx} className="border rounded-3 p-3 p-md-4 bg-light">
+                        <div className="d-flex align-items-center gap-2 mb-2">
+                          <span className="badge bg-danger rounded-pill px-3 py-1">
+                            {dayItem.day}
+                          </span>
+                          <h4 className="fw-bold text-dark fs-6 mb-0">{dayItem.title}</h4>
+                        </div>
+                        <p className="text-muted mb-0 small">{dayItem.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Need To Know Details */}
+              <div className="col-12 col-lg-5">
+                <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+                  <span className="text-danger fw-bold text-uppercase fs-8 d-block mb-1">
+                    PACKAGE GUIDELINES
+                  </span>
+                  <h3 className="fw-bold text-dark mb-4">Important Details</h3>
+
+                  <ul className="list-unstyled mb-0 d-flex flex-column gap-3">
+                    {pkg.importantDetails.map((detail, idx) => (
+                      <li key={idx} className="d-flex align-items-start gap-2 text-dark small">
+                        <span className="text-danger fw-bold">•</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* =========================================
             CALL TO ACTION BANNER

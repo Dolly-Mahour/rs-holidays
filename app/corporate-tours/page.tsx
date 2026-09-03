@@ -18,7 +18,7 @@ const CorporateTours = () => {
       duration: "4 Days / 3 Nights",
       price: "₹54,999",
       people: "20+",
-      image: "images/bali.png"
+      image: "images/bali.png",
     },
     {
       title: "Dubai Corporate Escape",
@@ -65,30 +65,28 @@ const CorporateTours = () => {
 
   return (
     <main className="corporate-page">
-
       {/* =====================================================
           HERO
       ===================================================== */}
       <section className="corporate-hero">
         <div className="container">
           <div className="row align-items-center g-5">
-
             <div className="col-lg-6">
               <div className="corporate-hero-content">
-
                 <span className="corporate-eyebrow">
                   CORPORATE <b>TOURS</b>
                 </span>
 
                 <h1>
-                  Stronger Teams,
-                  <span> Better Journeys</span>
+                  Corporate Tours 
+                  <span>& Team Outings</span>
                 </h1>
 
                 <p>
-                  Curated corporate travel experiences that inspire
-                  collaboration, motivate teams and create memories for a
-                  lifetime.
+                  Plan memorable corporate tours, team outings and company
+                  offsites with customized travel experiences designed for
+                  employee engagement, team bonding and stress-free group
+                  travel.
                 </p>
 
                 <button className="corporate-primary-btn">
@@ -96,20 +94,14 @@ const CorporateTours = () => {
                   <span>→</span>
                 </button>
 
-                <div className="hero-decoration hero-star">
-                  ✦
-                </div>
+                <div className="hero-decoration hero-star">✦</div>
 
-                <div className="hero-decoration hero-plane">
-                  ➤
-                </div>
-
+                <div className="hero-decoration hero-plane">➤</div>
               </div>
             </div>
 
             <div className="col-lg-6">
               <div className="corporate-hero-image">
-
                 <div className="hero-image-shape"></div>
 
                 <img
@@ -121,23 +113,18 @@ const CorporateTours = () => {
                   <small>TRAVEL TOGETHER</small>
                   <strong>ACHIEVE TOGETHER</strong>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </section>
-
 
       {/* =====================================================
           SEARCH / FILTER BAR
       ===================================================== */}
       <section className="corporate-search-wrapper">
         <div className="container">
-
           <div className="corporate-search-card">
-
             <div className="search-item">
               <div className="search-icon">⌖</div>
 
@@ -149,9 +136,7 @@ const CorporateTours = () => {
               <span className="search-arrow">⌄</span>
             </div>
 
-
             <div className="search-divider"></div>
-
 
             <div className="search-item">
               <div className="search-icon">♧</div>
@@ -164,9 +149,7 @@ const CorporateTours = () => {
               <span className="search-arrow">⌄</span>
             </div>
 
-
             <div className="search-divider"></div>
-
 
             <div className="search-item">
               <div className="search-icon">◷</div>
@@ -179,27 +162,20 @@ const CorporateTours = () => {
               <span className="search-arrow">⌄</span>
             </div>
 
-
             <button className="corporate-search-btn">
               <span>⌕</span>
               Search Tours
             </button>
-
           </div>
-
         </div>
       </section>
-
 
       {/* =====================================================
           WHY CORPORATE TOURS
       ===================================================== */}
       <section className="corporate-reasons py-5">
-
         <div className="container">
-
           <div className="section-heading text-center">
-
             <span>WHY CHOOSE</span>
 
             <h2>
@@ -207,18 +183,15 @@ const CorporateTours = () => {
             </h2>
 
             <div className="heading-line"></div>
-
           </div>
 
-
           <div className="row g-4 mt-4">
-
             {reasons.map((reason, index) => (
               <div className="col-md-6 col-lg-3" key={index}>
-
                 <div className="reason-card">
-
-                  <div className={`reason-icon ${index % 2 === 0 ? "red" : "blue"}`}>
+                  <div
+                    className={`reason-icon ${index % 2 === 0 ? "red" : "blue"}`}
+                  >
                     {reason.icon}
                   </div>
 
@@ -227,78 +200,46 @@ const CorporateTours = () => {
                   <p>{reason.text}</p>
 
                   <div className="reason-line"></div>
-
                 </div>
-
               </div>
             ))}
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           POPULAR CORPORATE TOURS
       ===================================================== */}
       <section className="corporate-tours py-5">
-
         <div className="container">
-
           <div className="section-top d-flex justify-content-between align-items-end mb-4">
-
             <div>
-              <span className="section-mini-title">
-                EXPLORE WITH YOUR TEAM
-              </span>
+              <span className="section-mini-title">EXPLORE WITH YOUR TEAM</span>
 
               <h2>
                 Popular <b>Corporate Tours</b>
               </h2>
             </div>
 
-            <button className="view-all-btn">
-              View All Tours →
-            </button>
-
+            <button className="view-all-btn">View All Tours →</button>
           </div>
 
-
           <div className="row g-4">
-
             {corporateTours.map((tour, index) => (
-
               <div className="col-sm-6 col-lg-3" key={index}>
-
                 <article className="corporate-tour-card">
-
                   <div className="tour-image">
+                    <img src={tour.image} alt={tour.title} />
 
-                    <img
-                      src={tour.image}
-                      alt={tour.title}
-                    />
+                    <span className="tour-location">📍 {tour.location}</span>
 
-                    <span className="tour-location">
-                      📍 {tour.location}
-                    </span>
-
-                    <span className="tour-people">
-                      👥 {tour.people}
-                    </span>
-
+                    <span className="tour-people">👥 {tour.people}</span>
                   </div>
 
-
                   <div className="tour-card-content">
-
                     <h3>{tour.title}</h3>
 
-                    <div className="tour-duration">
-                      ◷ {tour.duration}
-                    </div>
+                    <div className="tour-duration">◷ {tour.duration}</div>
 
                     <div className="tour-price">
                       <small>Starting from</small>
@@ -310,17 +251,11 @@ const CorporateTours = () => {
                       Explore Tour
                       <span>→</span>
                     </button>
-
                   </div>
-
                 </article>
-
               </div>
-
             ))}
-
           </div>
-
 
           <div className="tour-pagination">
             <span className="active"></span>
@@ -328,23 +263,16 @@ const CorporateTours = () => {
             <span></span>
             <span></span>
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           CORPORATE CTA
       ===================================================== */}
       <section className="corporate-cta-section">
-
         <div className="container">
-
           <div className="corporate-cta">
-
             <div className="cta-content">
-
               <span>MAKE YOUR TEAM STRONGER</span>
 
               <h2>
@@ -353,20 +281,17 @@ const CorporateTours = () => {
               </h2>
 
               <p>
-                From offsites to reward trips, we design experiences that
-                your team will cherish forever.
+                From offsites to reward trips, we design experiences that your
+                team will cherish forever.
               </p>
 
               <button className="cta-btn">
                 Get a Custom Quote
                 <span>→</span>
               </button>
-
             </div>
 
-
             <div className="cta-images">
-
               <div className="polaroid polaroid-one">
                 <img
                   src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
@@ -387,29 +312,19 @@ const CorporateTours = () => {
                   alt="Group travel"
                 />
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           STATS / TESTIMONIAL
       ===================================================== */}
       <section className="corporate-stats py-5">
-
         <div className="container">
-
           <div className="row g-4 align-items-stretch">
-
             <div className="col-lg-3">
-
               <div className="company-stat-card">
-
                 <span>TRUSTED BY COMPANIES</span>
 
                 <strong>500+</strong>
@@ -417,49 +332,33 @@ const CorporateTours = () => {
                 <h4>Happy Corporates</h4>
 
                 <p>
-                  Delivering exceptional corporate travel experiences
-                  worldwide.
+                  Delivering exceptional corporate travel experiences worldwide.
                 </p>
-
               </div>
-
             </div>
 
-
             <div className="col-lg-6">
-
               <div className="corporate-testimonial">
-
-                <div className="quote-mark">
-                  “
-                </div>
+                <div className="quote-mark">“</div>
 
                 <p>
                   RS Holidays planned the perfect offsite for our team.
-                  Everything was seamless and the experience was
-                  unforgettable!
+                  Everything was seamless and the experience was unforgettable!
                 </p>
 
                 <div className="testimonial-author">
-                  <div className="author-avatar">
-                    HR
-                  </div>
+                  <div className="author-avatar">HR</div>
 
                   <div>
                     <strong>HR Manager</strong>
                     <span>Tech Solutions Pvt. Ltd.</span>
                   </div>
                 </div>
-
               </div>
-
             </div>
 
-
             <div className="col-lg-3">
-
               <div className="stats-small-wrapper">
-
                 <div className="small-stat">
                   <span>CLIENT SATISFACTION</span>
                   <strong>98%</strong>
@@ -469,27 +368,18 @@ const CorporateTours = () => {
                   <span>YEARS EXPERIENCE</span>
                   <strong>10+</strong>
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           FINAL CTA
       ===================================================== */}
       <section className="corporate-final-cta">
-
         <div className="container">
-
           <div className="final-cta-inner text-center">
-
             <span>READY TO TRAVEL TOGETHER?</span>
 
             <h2>
@@ -498,20 +388,14 @@ const CorporateTours = () => {
             </h2>
 
             <p>
-              Tell us your requirements and we'll create a corporate
-              travel experience around your team.
+              Tell us your requirements and we'll create a corporate travel
+              experience around your team.
             </p>
 
-            <button>
-              Plan My Corporate Trip →
-            </button>
-
+            <button>Plan My Corporate Trip →</button>
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 };

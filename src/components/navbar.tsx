@@ -18,16 +18,33 @@ const internationalTrips = [
 ];
 
 const indiaTrips = [
-  "Ladakh",
-  "Spiti Valley",
-  "Zanskar",
-  "Meghalaya",
-  "Kashmir",
-  "Himachal Pradesh",
-  "Andaman",
-  "Kerala",
-  "Rajasthan",
-  "Nagaland",
+  "Kheerganga Trek",
+  "Jispa Getaway",
+  "Manali-Leh-Srinagar",
+  "Sissu-Kasol Trip",
+  "Himachal Explorer",
+  "Zanskar Expedition",
+  "Triund Trek",
+  "Triund-Bir Adventure",
+  "Ladakh & Turtuk",
+  "Winter Spiti",
+  "Sainj Valley",
+  "Jibhi Escape",
+  "Bir Paragliding",
+  "Yulla Kanda Trek",
+  "Valley of Flowers",
+  "Mukteshwar Retreat",
+  "Chopta-Deoriatal Trek",
+  "Chakrata Getaway",
+  "Auli-Joshimath Trip",
+  "Kashmir Paradise",
+  "Rajasthan Backpacking",
+  "Udaipur-Abu Trip",
+  "Udaipur-Kumbhalgarh",
+  "Jaisalmer-Longewala",
+  "Kerala Backpacking",
+  "Ooty-Coorg Escape",
+  "Meghalaya Backpacking",
 ];
 
 const groupTours = [
@@ -132,6 +149,12 @@ const Navbar = () => {
           </div>
 
           <div className="d-flex flex-grow-1 align-items-center justify-content-between mx-5 px-3">
+            <Link
+              href="/packages"
+              className="text-decoration-none text-danger fw-bold nav-link-hover nav-top-text"
+            >
+              Packages 🎒
+            </Link>
             <Link
               href="/upcoming-trips"
               className="text-decoration-none text-dark fw-medium nav-link-hover nav-top-text"
@@ -247,6 +270,13 @@ const Navbar = () => {
           {mobileMenuOpen && (
             <div className="d-flex flex-column gap-2  py-2 border-top">
               <Link
+                href="/packages"
+                onClick={closeMobileMenu}
+                className="text-decoration-none text-danger fw-bold nav-link-hover py-1 nav-top-text"
+              >
+                Packages 🎒
+              </Link>
+              <Link
                 href="/upcoming-trips"
                 onClick={closeMobileMenu}
                 className="text-decoration-none text-dark fw-medium nav-link-hover py-1 nav-top-text"
@@ -336,14 +366,14 @@ const Navbar = () => {
               >
                 India Trips
               </button>
-              <ul className="dropdown-menu bg-white ">
+              <ul className="dropdown-menu bg-white shadow" style={{ maxHeight: "360px", overflowY: "auto" }}>
                 {indiaTrips.map((trip, index) => (
                   <li
                     key={index}
                     className="px-3 py-2 text-dark small dropdown-item-hover rounded"
                   >
                     <Link
-                      href={`/places/${trip}`}
+                      href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/\s+/g, '-'))}`}
                       className="text-decoration-none text-dark d-block"
                     >
                       {trip}

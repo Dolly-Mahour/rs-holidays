@@ -167,13 +167,15 @@ body {
 }
 
 .gradient-rs-text {
-  background: -webkit-linear-gradient(135deg,#2e3192, #ed1b24);
+  background: -webkit-linear-gradient(135deg, #2e3192, #ed1b24);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.z-2000{
+
+.z-2000 {
   z-index: 1000 !important;
 }
+
 /* Shared hover link */
 .rs-link-hover {
   transition: color var(--rs-transition-fast);
@@ -286,9 +288,10 @@ body {
 /* =========================
    HEADER
 ========================= */
-.fs-8px{
+.fs-8px {
   font-size: 10px;
 }
+
 .trips-header {
   position: relative;
   z-index: 20;
@@ -334,11 +337,27 @@ body {
   left: 50%;
   top: 0;
   width: 175px;
+  opacity: 0;
+  visibility: hidden;
   transition:
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.8s ease;
-  will-change: transform;
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+  will-change: transform, opacity;
   pointer-events: none;
+  cursor: pointer;
+}
+
+.trip-position-0,
+.trip-position--1,
+.trip-position-1,
+.trip-position--2,
+.trip-position-2,
+.trip-position--3,
+.trip-position-3 {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* =========================
@@ -419,7 +438,8 @@ body {
   transform: translateX(-50%);
   margin-top: 48px;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .trip-number {
@@ -432,7 +452,7 @@ body {
 .trip-title {
   margin-top: 12px;
   color: var(--rs-text);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -672,7 +692,7 @@ body {
 
   .trip-title {
     margin-top: 7px;
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .trip-control-btn {
