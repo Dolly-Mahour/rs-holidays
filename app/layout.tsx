@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { CurrencyProvider } from "@/src/context/CurrencyContext";
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -33,11 +35,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-          <Navbar />
-          <div>{children}</div>
-          <Footer />
-        </div>
+        <CurrencyProvider>
+          <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+            <Navbar />
+            <div>{children}</div>
+            <Footer />
+          </div>
+        </CurrencyProvider>
       </body>
     </html>
   );

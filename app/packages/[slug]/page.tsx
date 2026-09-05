@@ -16,20 +16,57 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
-  PhoneCall
+  PhoneCall,
+  Info,
+  ShieldCheck,
+  FileText
 } from "lucide-react";
 import "@/src/styles/trip-details.css";
+import { useCurrency } from "@/src/context/CurrencyContext";
 
 export default function PackageDetailPage() {
+  const { formatPrice } = useCurrency();
   const params = useParams();
   const slug = (params?.slug as string) || "kheerganga-trek";
   const pkg: PackageData = getPackageBySlug(slug);
 
   const [openDay, setOpenDay] = useState<number | null>(0);
   const [bookingSuccess, setBookingSuccess] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<"overview" | "itinerary" | "inclusions" | "exclusions" | "other">("overview");
+  const [showFullOverview, setShowFullOverview] = useState<boolean>(false);
 
   const toggleDay = (index: number) => {
     setOpenDay(openDay === index ? null : index);
+  };
+
+  const routeSummary = pkg.itinerary
+    .map((item) => item.title.replace(/—.*/, "").trim())
+    .join(" - ");
+
+  // Default Inclusions
+  const defaultInclusions = [
+    "Accommodation on sharing basis (Hotels / Camps / Homestays as per itinerary).",
+    "Meals specified in package details (Breakfast / Dinner).",
+    "Transfers and sightseeing as per the itinerary in suitable vehicles.",
+    "Trip Captain / Experienced Guide throughout the journey.",
+    "All driver allowances, toll taxes, parking fees, and state permits."
+  ];
+
+  // Default Exclusions
+  const defaultExclusions = [
+    "GST (5%) charged extra as applicable.",
+    "Personal expenses such as shopping, laundry, phone calls, and tips.",
+    "Any adventure activity charges (Paragliding, Skiing, Rafting, Cable Car) unless explicitly specified.",
+    "Travel Insurance & Medical emergency evacuation expenses.",
+    "Meals & beverages during transit or outside specified itinerary."
+  ];
+
+  const handleTabClick = (tabId: "overview" | "itinerary" | "inclusions" | "exclusions" | "other") => {
+    setActiveTab(tabId);
+    const element = document.getElementById(tabId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
@@ -53,16 +90,16 @@ export default function PackageDetailPage() {
         </div>
 
         {/* =========================================
-            HERO CARD & OVERVIEW (FITS WITHIN 100VH VIEWPORT)
+            HERO CARD & OVERVIEW
         ========================================= */}
-        <div className="card border-0 rounded-4 shadow-sm overflow-hidden mb-5">
+        <div className="card border-0 rounded-4 shadow-sm overflow-hidden mb-4">
           <div className="row g-0 align-items-stretch">
             
-            {/* Image / Video Column - Restricted to Viewport Height */}
+            {/* Image / Video Column */}
             <div
               className="col-12 col-lg-6 position-relative"
               style={{
-                height: "500px",
+                height: "480px",
                 maxHeight: "calc(100vh - 160px)",
                 minHeight: "350px",
               }}
@@ -75,14 +112,12 @@ export default function PackageDetailPage() {
                   loop
                   playsInline
                   className="w-100 h-100 object-fit-cover"
-                  style={{ height: "100%", maxHeight: "calc(100vh - 160px)" }}
                 />
               ) : (
                 <img
                   src={pkg.image}
                   alt={pkg.title}
                   className="w-100 h-100 object-fit-cover"
-                  style={{ height: "100%", maxHeight: "calc(100vh - 160px)" }}
                 />
               )}
               <div className="position-absolute top-0 start-0 m-3 d-flex gap-2 z-2">
@@ -137,7 +172,7 @@ export default function PackageDetailPage() {
               <div className="d-flex flex-wrap align-items-center justify-content-between pt-3 border-top gap-3">
                 <div>
                   <span className="d-block text-muted small">Package Cost Starting From</span>
-                  <span className="fw-bold text-danger display-6">₹{pkg.price}</span>
+                  <span className="fw-bold text-danger display-6">{formatPrice(pkg.price)}</span>
                   <span className="text-muted small"> / person</span>
                 </div>
                 <button
@@ -162,21 +197,78 @@ export default function PackageDetailPage() {
         </div>
 
         {/* =========================================
-            MAIN CONTENT: ITINERARY & DETAILS
+            NAVIGATION TABS (STICKY TAB BAR)
+        ========================================= */}
+        <div className="bg-white rounded-3 p-2 mb-4 shadow-sm border position-sticky" style={{ top: "70px", zIndex: 10 }}>
+          <div className="d-flex align-items-center gap-1 gap-md-3 overflow-x-auto pb-1 text-nowrap custom-scrollbar">
+            {[
+              { id: "overview", label: "Overview & Highlights" },
+              { id: "itinerary", label: "Itinerary" },
+              { id: "inclusions", label: "Inclusions" },
+              { id: "exclusions", label: "Exclusions" },
+              { id: "otherInfo", label: "Other Info" },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => handleTabClick(tab.id as any)}
+                className={`btn border-0 py-2 px-3 fw-bold transition-all ${
+                  activeTab === tab.id
+                    ? "btn-info text-white shadow-sm"
+                    : "btn-light text-dark bg-white"
+                }`}
+                style={{ fontSize: "14px", borderRadius: "8px" }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* =========================================
+            MAIN CONTENT SECTIONS
         ========================================= */}
         <div className="row g-4">
 
-          {/* Left Column: Day-wise Itinerary */}
-          <div className="col-12 col-lg-7">
-            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4">
-              <div className="d-flex align-items-center justify-content-between mb-4">
+          {/* Left Main Column */}
+          <div className="col-12 col-lg-8">
+
+            {/* SECTION 1: OVERVIEW & HIGHLIGHTS */}
+            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4 border-0" id="overview">
+              <div className="d-flex align-items-center gap-2 mb-3">
+                <div className="bg-info rounded-pill" style={{ width: "4px", height: "26px" }}></div>
+                <h3 className="fw-bold text-dark mb-0 fs-3">Overview & Highlights</h3>
+              </div>
+
+              {/* Route Box */}
+              <div className="p-3 mb-4 rounded-3 border border-info border-opacity-50 bg-info bg-opacity-10 text-dark fw-semibold fs-6">
+                {routeSummary}
+              </div>
+
+              {/* Description */}
+              <p className={`text-secondary fs-6 lh-relaxed mb-2 ${!showFullOverview ? "text-truncate-3" : ""}`}>
+                This {pkg.duration.split("(")[0]} {pkg.fullName} adventure is one of the most exciting ways to explore {pkg.state}'s famous high roads, scenic valleys, local culture, and breathtaking landscapes. Designed carefully for travelers seeking an unforgettable experience with curated stays, comfortable travel, and guided exploration.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setShowFullOverview(!showFullOverview)}
+                className="btn btn-link text-info fw-bold p-0 mt-2 text-decoration-none d-inline-flex align-items-center gap-1"
+              >
+                <span>{showFullOverview ? "Read Less" : "Read More"}</span>
+              </button>
+            </div>
+
+            {/* SECTION 2: DETAILED ITINERARY */}
+            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4 border-0" id="itinerary">
+              <div className="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
                 <div>
-                  <span className="text-danger fw-bold text-uppercase fs-8 d-block mb-1">
+                  <span className="text-danger fw-bold text-uppercase fs-8 tracking-wider d-block mb-1">
                     DAY-BY-DAY SCHEDULE
                   </span>
-                  <h3 className="fw-bold text-dark mb-0">Detailed Itinerary</h3>
+                  <h2 className="fw-bold text-dark mb-0 display-6">Detailed Itinerary</h2>
                 </div>
-                <span className="badge bg-light text-dark border px-3 py-2 rounded-pill small">
+                <span className="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold shadow-sm fs-7">
                   {pkg.itinerary.length} Days Plan
                 </span>
               </div>
@@ -188,31 +280,36 @@ export default function PackageDetailPage() {
                   return (
                     <div
                       key={idx}
-                      className={`border rounded-3 transition-all ${
-                        isOpen ? "border-danger shadow-sm" : "border-light"
+                      className={`border rounded-3 transition-all overflow-hidden ${
+                        isOpen
+                          ? "border-danger shadow-sm border-2"
+                          : "border-light-subtle bg-white"
                       }`}
                     >
                       <button
                         type="button"
                         onClick={() => toggleDay(idx)}
-                        className="w-100 bg-white border-0 p-3 p-md-4 text-start d-flex align-items-center justify-content-between rounded-3 shadow-none"
+                        className="w-100 bg-white border-0 p-3 p-md-4 text-start d-flex align-items-center justify-content-between shadow-none"
                       >
                         <div className="d-flex align-items-center gap-3">
-                          <span className="badge bg-rs-gradient text-white rounded-pill px-3 py-2">
+                          <span
+                            className="badge text-white rounded-pill px-3 py-2 fw-semibold"
+                            style={{ background: "linear-gradient(135deg, #b91c1c 0%, #4338ca 100%)" }}
+                          >
                             {item.day}
                           </span>
-                          <span className="fw-bold text-dark fs-6">{item.title}</span>
+                          <span className="fw-bold text-dark fs-5">{item.title}</span>
                         </div>
                         {isOpen ? (
-                          <ChevronUp size={20} className="text-danger" />
+                          <ChevronUp size={22} className="text-danger" />
                         ) : (
-                          <ChevronDown size={20} className="text-muted" />
+                          <ChevronDown size={22} className="text-muted" />
                         )}
                       </button>
 
                       {isOpen && (
-                        <div className="px-3 px-md-4 pb-4 pt-0 border-top mt-2 text-muted fs-7">
-                          <p className="mb-0 pt-3">{item.description}</p>
+                        <div className="px-3 px-md-4 pb-4 pt-0 border-top mt-2 text-secondary fs-6">
+                          <p className="mb-0 pt-3 lh-relaxed">{item.description}</p>
                         </div>
                       )}
                     </div>
@@ -220,17 +317,66 @@ export default function PackageDetailPage() {
                 })}
               </div>
             </div>
+
+            {/* SECTION 3: INCLUSIONS */}
+            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4 border-0" id="inclusions">
+              <div className="d-flex align-items-center gap-2 mb-4">
+                <div className="bg-success rounded-pill" style={{ width: "4px", height: "26px" }}></div>
+                <h3 className="fw-bold text-dark mb-0 fs-3">Inclusions</h3>
+              </div>
+              <ul className="list-unstyled d-flex flex-column gap-3 mb-0">
+                {defaultInclusions.map((inc, i) => (
+                  <li key={i} className="d-flex align-items-start gap-3 fs-6 text-dark p-2 rounded-2">
+                    <CheckCircle size={20} className="text-success flex-shrink-0 mt-1" />
+                    <span className="lh-relaxed">{inc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* SECTION 4: EXCLUSIONS */}
+            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4 border-0" id="exclusions">
+              <div className="d-flex align-items-center gap-2 mb-4">
+                <div className="bg-danger rounded-pill" style={{ width: "4px", height: "26px" }}></div>
+                <h3 className="fw-bold text-dark mb-0 fs-3">Exclusions</h3>
+              </div>
+              <ul className="list-unstyled d-flex flex-column gap-3 mb-0">
+                {defaultExclusions.map((exc, i) => (
+                  <li key={i} className="d-flex align-items-start gap-3 fs-6 text-dark p-2 rounded-2">
+                    <AlertCircle size={20} className="text-danger flex-shrink-0 mt-1" />
+                    <span className="lh-relaxed">{exc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* SECTION 5: OTHER INFO & GUIDELINES (PDF DATA) */}
+            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm mb-4 border-0" id="otherInfo">
+              <div className="d-flex align-items-center gap-2 mb-4">
+                <div className="bg-warning rounded-pill" style={{ width: "4px", height: "26px" }}></div>
+                <h3 className="fw-bold text-dark mb-0 fs-3">Other Info & Guidelines</h3>
+              </div>
+              <ul className="list-unstyled d-flex flex-column gap-3 mb-0">
+                {pkg.importantDetails.map((detail, idx) => (
+                  <li key={idx} className="d-flex align-items-start gap-3 fs-6 text-dark p-3 bg-light rounded-3">
+                    <Sparkles size={18} className="text-primary flex-shrink-0 mt-1" />
+                    <span className="lh-relaxed">{detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
-          {/* Right Column: Important Details & Need to Know */}
-          <div className="col-12 col-lg-5">
-            <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm position-sticky" style={{ top: "90px" }}>
+          {/* Right Sticky Sidebar Column */}
+          <div className="col-12 col-lg-4">
+            <div className="bg-white rounded-4 p-4 shadow-sm position-sticky" style={{ top: "140px" }}>
               <div className="d-flex align-items-center gap-2 mb-3">
                 <AlertCircle size={20} className="text-danger" />
-                <h4 className="fw-bold text-dark mb-0">Need To Know</h4>
+                <h4 className="fw-bold text-dark mb-0 fs-5">Important Details</h4>
               </div>
               <p className="text-muted small mb-4">
-                Important details, permits, and guidelines for {pkg.title}.
+                Key requirements & notes for {pkg.title}.
               </p>
 
               <ul className="list-unstyled mb-4 d-flex flex-column gap-3">
@@ -245,10 +391,10 @@ export default function PackageDetailPage() {
               <div className="p-3 bg-light rounded-3 border">
                 <div className="d-flex align-items-center gap-2 fw-bold text-dark small mb-1">
                   <PhoneCall size={16} className="text-danger" />
-                  <span>Have questions about this trip?</span>
+                  <span>Customization Available</span>
                 </div>
                 <p className="text-muted mb-0" style={{ fontSize: "12px" }}>
-                  Call our travel captain directly for custom inclusions & group discounts.
+                  Need custom dates, private cab, or hotel upgrades? Talk to our travel experts.
                 </p>
               </div>
             </div>

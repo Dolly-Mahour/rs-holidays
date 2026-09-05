@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "../styles/navbar.css";
 import Link from "next/link";
 import type { Modal } from "bootstrap";
+import CurrencySelector from "./currency-selector";
 
 const internationalTrips = [
   "Europe",
@@ -181,7 +182,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center gap-3">
+            {/* <CurrencySelector /> */}
             <button
               type="button"
               onClick={openModal}

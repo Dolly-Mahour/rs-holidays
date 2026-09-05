@@ -5,8 +5,10 @@ import Link from "next/link";
 import { ALL_PACKAGES, PackageData } from "@/src/data/packagesData";
 import { MapPin, Calendar, Clock, Star, ArrowRight, Sparkles, Filter } from "lucide-react";
 import "@/src/styles/upcoming-trips.css";
+import { useCurrency } from "@/src/context/CurrencyContext";
 
 export default function PackagesPage() {
+  const { formatPrice } = useCurrency();
   const [selectedState, setSelectedState] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -160,7 +162,7 @@ export default function PackagesPage() {
                         <span className="d-block text-muted small" style={{ fontSize: "11px" }}>
                           Starting From
                         </span>
-                        <span className="fw-bold text-danger fs-5">₹{pkg.price}</span>
+                        <span className="fw-bold text-danger fs-5">{formatPrice(pkg.price)}</span>
                       </div>
                       <Link
                         href={`/packages/${pkg.slug}`}

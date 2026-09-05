@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../src/styles/reusable-trips-carousel.css";
+import { useCurrency } from "@/src/context/CurrencyContext";
+import CurrencySelector from "./currency-selector";
 
 /**
  * @typedef {Object} Trip
@@ -33,8 +35,8 @@ const ReusableTripsCarousel = ({
   currencySymbol = "₹",
   autoScrollSpeed = 4000,
 }) => {
-
   const [activeIndex, setActiveIndex] = useState(0);
+  const { formatPrice } = useCurrency();
 
   /*
    * NEXT
@@ -47,9 +49,7 @@ const ReusableTripsCarousel = ({
    * PREVIOUS
    */
   const prevSlide = () => {
-    setActiveIndex(
-      (prev) => (prev - 1 + trips.length) % trips.length
-    );
+    setActiveIndex((prev) => (prev - 1 + trips.length) % trips.length);
   };
 
   /*
@@ -98,9 +98,7 @@ const ReusableTripsCarousel = ({
   }
 
   return (
-    <section
-      className={`reusable-trips-section ${bannerClass} mb-5`}
-    >
+    <section className={`reusable-trips-section ${bannerClass} mb-5`}>
       {/* =========================================
           VIDEO BACKGROUND
       ========================================= */}
@@ -120,46 +118,47 @@ const ReusableTripsCarousel = ({
 
       <div className="trips-video-overlay"></div>
 
-
       {/* =========================================
           CONTENT
       ========================================= */}
 
       <div className="trips-content">
-
         {/* TITLE */}
 
         <div className="trips-header text-center">
+          <h1 className="trips-title">{bannerTitle}</h1>
 
-          <h1 className="trips-title">
-            {bannerTitle}
-          </h1>
+          <p className="trips-subtitle">{bannerSubtitle}</p>
 
-          <p className="trips-subtitle">
-            {bannerSubtitle}
-          </p>
-
+          <div className="d-flex justify-content-center mt-2">
+            <CurrencySelector />
+          </div>
         </div>
-
 
         {/* =====================================
             3D CAROUSEL
         ===================================== */}
 
         <div className="trips-carousel">
-
           {trips.map((trip, index) => {
-
             const position = getPosition(index);
             const isVisible = Math.abs(position) <= 3;
 
             if (!isVisible) return null;
 
             const stateSlug = trip.state
-              ? trip.state.toLowerCase().split("/")[0].trim().replace(/\s+/g, "-")
+              ? trip.state
+                .toLowerCase()
+                .split("/")[0]
+                .trim()
+                .replace(/\s+/g, "-")
               : "himachal-pradesh";
-            
-            const pkgSlug = trip.slug || encodeURIComponent((trip.title || "").toLowerCase().replace(/\s+/g, "-"));
+
+            const pkgSlug =
+              trip.slug ||
+              encodeURIComponent(
+                (trip.title || "").toLowerCase().replace(/\s+/g, "-"),
+              );
 
             const stateDestinationUrl = `/states/${stateSlug}`;
 
@@ -173,11 +172,10 @@ const ReusableTripsCarousel = ({
                   }
                 }}
               >
-
                 {/* IMAGE */}
 
                 <div className="trip-image-wrapper">
-                  <Link href={trip.state ? stateDestinationUrl : `/packages/${pkgSlug}`}>
+                  <Link href={`/packages/${pkgSlug}`}>
                     <img
                       src={trip.image}
                       alt={trip.title || `Trip ${index + 1}`}
@@ -185,77 +183,68 @@ const ReusableTripsCarousel = ({
                   </Link>
                 </div>
 
-
                 {/* INFORMATION */}
 
                 {(trip.number || trip.title || trip.state || trip.price) && (
                   <div className="trip-info">
-
                     {trip.state && (
                       <div className="mb-1">
                         <Link
                           href={stateDestinationUrl}
-                          className="badge bg-rs-blue text-white rounded-pill px-2 py-1 text-decoration-none shadow-sm d-inline-block hover-scale"
+                          className="badge bg-rs-gradient text-white rounded-pill px-2 py-1 text-decoration-none shadow-sm d-inline-block hover-scale"
                           style={{ fontSize: "11px" }}
                         >
-                          📍 {trip.state}
+                          {trip.state}
                         </Link>
                       </div>
                     )}
 
                     {trip.number && (
-                      <div className="trip-number">
-                        {trip.number}
-                      </div>
+                      <div className="trip-number">{trip.number}</div>
                     )}
 
                     {trip.title && (
                       <Link
-                        href={trip.state ? stateDestinationUrl : `/packages/${pkgSlug}`}
-                        className="trip-title fw-bold text-decoration-none text-dark d-block"
+                        href={`/packages/${pkgSlug}`}
+                        className="trip-title fw-bold text-decoration-none text-dark d-block mb-1"
                       >
                         {trip.title}
                       </Link>
                     )}
 
+                    {/* <div className="d-inline-block badge bg-danger text-white fw-bold px-2 py-1 rounded-pill shadow-sm">
+                      {formatPrice(trip.price || 999)}
+                    </div> */}
                   </div>
                 )}
-
               </div>
             );
           })}
-
-        </div>
-
-
-        {/* =====================================
+          {/* =====================================
             CONTROLS
         ===================================== */}
 
-        <div className="trips-controls">
+          <div className="trips-controls w-100 d-flex justify-content-between mt-5">
+            <button
+              type="button"
+              className="trip-control-btn"
+              onClick={prevSlide}
+              aria-label="Previous trip"
+            >
+              ←
+            </button>
 
-          <button
-            type="button"
-            className="trip-control-btn"
-            onClick={prevSlide}
-            aria-label="Previous trip"
-          >
-            ←
-          </button>
-
-          <button
-            type="button"
-            className="trip-control-btn"
-            onClick={nextSlide}
-            aria-label="Next trip"
-          >
-            →
-          </button>
-
+            <button
+              type="button"
+              className="trip-control-btn"
+              onClick={nextSlide}
+              aria-label="Next trip"
+            >
+              →
+            </button>
+          </div>
         </div>
-
       </div>
-
     </section>
   );
 };
