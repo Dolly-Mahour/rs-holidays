@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getPackageBySlug, PackageData } from "@/src/data/packagesData";
@@ -69,41 +69,74 @@ export default function PackageDetailPage() {
     }
   };
 
+  useEffect(() => {
+    if (pkg?.title) {
+      document.title = `${pkg.title} (${pkg.duration}) | RS Holidays`;
+    }
+  }, [pkg?.title, pkg?.duration]);
+
+  const touristTripSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: pkg.fullName || pkg.title,
+    description:
+      (pkg.importantDetails && pkg.importantDetails[0]) ||
+      `Detailed ${pkg.duration} holiday tour package in ${pkg.state}.`,
+    image: `https://rsholidays.com${pkg.image}`,
+    touristType: pkg.bestFor,
+    offers: {
+      "@type": "Offer",
+      price: pkg.price ? pkg.price.replace(/,/g, "") : "999",
+      priceCurrency: "INR",
+      availability: "https://schema.org/InStock",
+      url: `https://rsholidays.com/packages/${pkg.slug}`,
+    },
+    itinerary: {
+      "@type": "ItemList",
+      numberOfItems: pkg.itinerary?.length || 0,
+      itemListElement: (pkg.itinerary || []).map((it, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: it.title,
+        description: it.description,
+      })),
+    },
+  };
+
   return (
-    <div className="package-details-page bg-light min-vh-100 py-3 py-md-4">
+    <div className="trip-details-page bg-light min-vh-100 py-4 py-md-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripSchema) }}
+      />
       <div className="container-lg">
 
         {/* =========================================
-            BACK LINK & TOP BAR
+            TOP BREADCRUMB / BACK NAV
         ========================================= */}
-        <div className="d-flex align-items-center justify-content-between mb-3">
+        <div className="mb-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
           <Link
             href="/packages"
-            className="btn btn-outline-secondary rounded-pill px-4 btn-sm d-inline-flex align-items-center gap-2 shadow-sm bg-white"
+            className="btn btn-outline-secondary rounded-pill px-3 py-1 btn-sm d-inline-flex align-items-center gap-1"
           >
             <ArrowLeft size={16} />
             <span>Back to All Packages</span>
           </Link>
-          <span className="badge bg-rs-blue text-white rounded-pill px-3 py-2">
-            📍 {pkg.state}
-          </span>
+          <div className="d-flex align-items-center gap-2">
+            <span className="text-muted small">Share:</span>
+            <span className="badge bg-secondary rounded-pill px-2 py-1 small">
+              RS Holidays
+            </span>
+          </div>
         </div>
 
         {/* =========================================
-            HERO CARD & OVERVIEW
+            HERO SECTION WITH MEDIA & QUICK INFO
         ========================================= */}
-        <div className="card border-0 rounded-4 shadow-sm overflow-hidden mb-4">
-          <div className="row g-0 align-items-stretch">
-            
-            {/* Image / Video Column */}
-            <div
-              className="col-12 col-lg-6 position-relative"
-              style={{
-                height: "480px",
-                maxHeight: "calc(100vh - 160px)",
-                minHeight: "350px",
-              }}
-            >
+        <div className="bg-white rounded-4 shadow-sm overflow-hidden mb-5 border">
+          <div className="row g-0">
+            {/* Media column */}
+            <div className="col-12 col-lg-7 position-relative" style={{ minHeight: "380px" }}>
               {pkg.video ? (
                 <video
                   src={pkg.video}
@@ -116,7 +149,7 @@ export default function PackageDetailPage() {
               ) : (
                 <img
                   src={pkg.image}
-                  alt={pkg.title}
+                  alt={`${pkg.title} - ${pkg.state} Adventure Tour Package by RS Holidays`}
                   className="w-100 h-100 object-fit-cover"
                 />
               )}

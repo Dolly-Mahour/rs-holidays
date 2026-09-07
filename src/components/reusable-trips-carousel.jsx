@@ -126,7 +126,7 @@ const ReusableTripsCarousel = ({
         {/* TITLE */}
 
         <div className="trips-header text-center">
-          <h1 className="trips-title">{bannerTitle}</h1>
+          <h2 className="trips-title">{bannerTitle}</h2>
 
           <p className="trips-subtitle">{bannerSubtitle}</p>
 
@@ -146,25 +146,14 @@ const ReusableTripsCarousel = ({
 
             if (!isVisible) return null;
 
-            const stateSlug = trip.state
-              ? trip.state
-                .toLowerCase()
-                .split("/")[0]
-                .trim()
-                .replace(/\s+/g, "-")
-              : "himachal-pradesh";
-
-            const pkgSlug =
-              trip.slug ||
-              encodeURIComponent(
-                (trip.title || "").toLowerCase().replace(/\s+/g, "-"),
-              );
-
-            const stateDestinationUrl = `/states/${stateSlug}`;
+            const pkgSlug = trip.slug || (trip.title ? trip.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") : "");
+            const stateDestinationUrl = trip.state
+              ? `/states/${trip.state.split("/")[0].trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`
+              : "#";
 
             return (
               <div
-                key={trip.id ?? index}
+                key={trip.id || index}
                 className={`trip-carousel-card trip-position-${position}`}
                 onClick={() => {
                   if (position !== 0) {
@@ -178,7 +167,8 @@ const ReusableTripsCarousel = ({
                   <Link href={`/packages/${pkgSlug}`}>
                     <img
                       src={trip.image}
-                      alt={trip.title || `Trip ${index + 1}`}
+                      alt={`${trip.title || "Holiday Tour"} - ${trip.state ? `${trip.state} Package` : "RS Holidays"}`}
+                      loading="lazy"
                     />
                   </Link>
                 </div>

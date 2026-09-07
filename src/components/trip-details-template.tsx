@@ -98,7 +98,7 @@ export default function TripDetailsTemplate({ slug = "bali", tripData }: TripDet
             <div className="col-12 col-lg-6 position-relative" style={{ height: "450px" }}>
               <img
                 src={trip.image || pkg.image || "/images/bali.png"}
-                alt={trip.title}
+                alt={`${trip.title || "Holiday Tour"} - ${trip.location || (pkg && pkg.state) || "Destination"} Tour Package by RS Holidays`}
                 className="w-100 h-100 object-fit-cover"
               />
               <div className="position-absolute top-0 start-0 m-3 z-2">

@@ -105,8 +105,8 @@ const CorporateTours = () => {
                 <div className="hero-image-shape"></div>
 
                 <img
-                  src="images/corporate-tour.png"
-                  alt="Corporate team travelling"
+                  src="/images/corporate-tour.png"
+                  alt="Corporate team retreat and offsite travel packages by RS Holidays"
                 />
 
                 <div className="hero-image-label">
@@ -229,7 +229,11 @@ const CorporateTours = () => {
               <div className="col-sm-6 col-lg-3" key={index}>
                 <article className="corporate-tour-card">
                   <div className="tour-image">
-                    <img src={tour.image} alt={tour.title} />
+                    <img
+                      src={tour.image}
+                      alt={`${tour.title} - ${tour.location} Corporate Tour Package`}
+                      loading="lazy"
+                    />
 
                     <span className="tour-location">📍 {tour.location}</span>
 
@@ -295,21 +299,24 @@ const CorporateTours = () => {
               <div className="polaroid polaroid-one">
                 <img
                   src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
-                  alt="Team outing"
+                  alt="Corporate team outing and leadership retreat"
+                  loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-two">
                 <img
                   src="https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=700&q=80"
-                  alt="Corporate event"
+                  alt="Corporate workshop and team meeting offsite"
+                  loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-three">
                 <img
                   src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=700&q=80"
-                  alt="Group travel"
+                  alt="Corporate travel and adventure team bonding"
+                  loading="lazy"
                 />
               </div>
             </div>

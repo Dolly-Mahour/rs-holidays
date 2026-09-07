@@ -188,7 +188,7 @@ const Blogs = () => {
               <div className="blogs-featured-hero">
                 <img
                   src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=90"
-                  alt="Travel adventure"
+                  alt="Featured travel adventure story and trek guide - RS Holidays"
                 />
 
                 <div className="blogs-featured-badge">
@@ -321,7 +321,10 @@ const Blogs = () => {
               <div className="col-lg-7">
                 <article className="blogs-main-feature">
                   <div className="blogs-main-feature-image">
-                    <img src={featuredPost.image} alt={featuredPost.title} />
+                    <img
+                      src={featuredPost.image}
+                      alt={`${featuredPost.title} - RS Holidays Travel Blog`}
+                    />
 
                     <span className="blogs-editor-badge">
                       Editor&apos;s Pick
@@ -359,7 +362,11 @@ const Blogs = () => {
                       </div>
 
                       <div className="blogs-list-thumbnail">
-                        <img src={post.image} alt={post.title} />
+                        <img
+                          src={post.image}
+                          alt={`${post.title} - ${post.category}`}
+                          loading="lazy"
+                        />
                       </div>
 
                       <div className="blogs-list-content">
@@ -412,7 +419,11 @@ const Blogs = () => {
                 <div className="col-md-6 col-xl-4" key={post.id}>
                   <article className="blogs-article-card h-100">
                     <div className="blogs-card-image">
-                      <img src={post.image} alt={post.title} />
+                      <img
+                        src={post.image}
+                        alt={`${post.title} - ${post.category} Travel Story`}
+                        loading="lazy"
+                      />
 
                       <span className="blogs-image-category">
                         {post.category}

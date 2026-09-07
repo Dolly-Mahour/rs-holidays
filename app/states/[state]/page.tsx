@@ -67,7 +67,7 @@ export default function StatePackagesPage() {
         <div className="position-relative rounded-4 overflow-hidden mb-5 shadow-lg" style={{ minHeight: "320px" }}>
           <img
             src={bannerImage}
-            alt={formattedState}
+            alt={`${formattedState} Tourism & Travel Holiday Packages - RS Holidays`}
             className="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
           />
           <div
@@ -83,34 +83,21 @@ export default function StatePackagesPage() {
             </span>
             <h1 className="fw-bold display-4 mb-2 text-white">{formattedState}</h1>
             <p className="fs-6 text-white-50 mb-0" style={{ maxWidth: "600px" }}>
-              Explore all trips, itineraries, and vacation packages for {formattedState}. Discover breathtaking mountains, cultural heritage, and epic adventures.
+              Explore handpicked trekking, sightseeing, and adventure tour packages in {formattedState}.
             </p>
-            <div className="mt-3 text-warning fw-bold small">
-              ✦ {statePackages.length} Tour Packages Available
-            </div>
           </div>
         </div>
 
         {/* =========================================
-            STATE PACKAGES GRID
+            PACKAGES GRID
         ========================================= */}
-        <div className="d-flex align-items-center justify-content-between mb-4">
-          <div>
-            <h3 className="fw-bold text-dark mb-1">
-              Trips & Packages in <span className="text-danger">{formattedState}</span>
-            </h3>
-            <p className="text-muted small mb-0">
-              Click on any package to view day-wise itinerary and details
-            </p>
-          </div>
-        </div>
-
         {statePackages.length === 0 ? (
-          <div className="bg-white rounded-4 p-5 text-center shadow-sm">
-            <h4 className="fw-bold text-dark mb-2">No specific packages found for {formattedState}</h4>
-            <p className="text-muted mb-4">Explore all our 27 Indian tour packages across Himachal, Uttarakhand, Rajasthan, Ladakh, and more.</p>
-            <Link href="/packages" className="btn btn-danger rounded-pill px-4 py-2">
-              Browse All Packages
+          <div className="text-center py-5 bg-white rounded-4 shadow-sm p-4">
+            <Sparkles size={48} className="text-muted mb-3" />
+            <h4 className="fw-bold text-dark">No packages found for {formattedState}</h4>
+            <p className="text-muted">Explore our full catalog of handcrafted trips across India.</p>
+            <Link href="/packages" className="btn btn-danger rounded-pill px-4 py-2 mt-2">
+              View All Packages
             </Link>
           </div>
         ) : (
@@ -122,7 +109,8 @@ export default function StatePackagesPage() {
                   <div className="position-relative" style={{ height: "220px" }}>
                     <img
                       src={pkg.image}
-                      alt={pkg.title}
+                      alt={`${pkg.title} - ${pkg.state} Holiday Package`}
+                      loading="lazy"
                       className="w-100 h-100 object-fit-cover"
                     />
                     <div className="position-absolute top-0 start-0 m-3 d-flex gap-2">

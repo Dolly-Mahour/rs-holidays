@@ -6,6 +6,23 @@ import WhyChooseUse from "../src/components/why-choose-us";
 import OurJourneys from "../src/components/our-journeys";
 // import Map from "../src/components/t";
 import TripsMap from "../src/components/trips-map";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Curated Holiday Packages & Adventure Trips in India | RS Holidays",
+  description:
+    "Discover curated travel experiences with RS Holidays. From high-altitude Himalayan treks in Himachal & Ladakh to relaxing getaways in Kerala, Rajasthan, and Meghalaya.",
+  keywords: [
+    "Holiday packages India",
+    "Himachal trek packages",
+    "Ladakh tour",
+    "Kerala tour packages",
+    "Rajasthan holiday packages",
+    "Meghalaya backpacking",
+    "RS Holidays",
+  ],
+};
+
 interface trips {
   id: number;
   title: string;
@@ -77,6 +94,9 @@ const Home = () => {
 
   return (
     <div className="position-relative">
+      <h1 className="visually-hidden">
+        RS Holidays - Curated Holiday Packages & Adventure Trips in India
+      </h1>
       <div className="">
         <ReusableTripsCarousel
           trips={indiaTrips}

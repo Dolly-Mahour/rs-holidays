@@ -163,10 +163,11 @@ const Navbar = () => {
               Upcoming Trips
             </Link>
             <Link
-              href="/corporate-tours"
-              className="text-decoration-none text-dark fw-medium nav-link-hover nav-top-text"
+              href="/trek-and-explore"
+              onClick={closeMobileMenu}
+              className="text-decoration-none text-dark fw-medium nav-link-hover py-1 nav-top-text"
             >
-              Corporate Tours
+              Trek & Explore
             </Link>
             <Link
               href="/blogs"
@@ -286,11 +287,11 @@ const Navbar = () => {
                 Upcoming Trips 📅
               </Link>
               <Link
-                href="/corporate-tours"
+                href="/trek-and-explore"
                 onClick={closeMobileMenu}
                 className="text-decoration-none text-dark fw-medium nav-link-hover py-1 nav-top-text"
               >
-                Corporate Tours
+                Trek & Explore
               </Link>
               <Link
                 href="/blogs"
@@ -325,6 +326,40 @@ const Navbar = () => {
       mb-0
       w-100"
         >
+          {/* India Trips */}
+          <li
+            className=" text-white fw-semibold z-2000"
+            style={{ cursor: "pointer" }}
+          >
+            <div className="dropdown nav-bottom-text">
+              <button
+                className="bg-transparent text-white fs-bold border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Domestic Escapes
+              </button>
+              <ul
+                className="dropdown-menu bg-white shadow"
+                style={{ maxHeight: "360px", overflowY: "auto" }}
+              >
+                {indiaTrips.map((trip, index) => (
+                  <li
+                    key={index}
+                    className="px-3 py-2 text-dark small dropdown-item-hover rounded"
+                  >
+                    <Link
+                      href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/\s+/g, "-"))}`}
+                      className="text-decoration-none text-dark d-block"
+                    >
+                      {trip}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
           {/* International Trips */}
           <li className="text-white fw-semibold" style={{ cursor: "pointer" }}>
             <div className="dropdown nav-bottom-text">
@@ -353,39 +388,6 @@ const Navbar = () => {
               </ul>
             </div>
           </li>
-
-          {/* India Trips */}
-          <li
-            className=" text-white fw-semibold z-2000"
-            style={{ cursor: "pointer" }}
-          >
-            <div className="dropdown nav-bottom-text">
-              <button
-                className="bg-transparent text-white fs-bold border-0 dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                India Trips
-              </button>
-              <ul className="dropdown-menu bg-white shadow" style={{ maxHeight: "360px", overflowY: "auto" }}>
-                {indiaTrips.map((trip, index) => (
-                  <li
-                    key={index}
-                    className="px-3 py-2 text-dark small dropdown-item-hover rounded"
-                  >
-                    <Link
-                      href={`/packages/${encodeURIComponent(trip.toLowerCase().replace(/\s+/g, '-'))}`}
-                      className="text-decoration-none text-dark d-block"
-                    >
-                      {trip}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-
           {/* Group Tours */}
           <li
             className=" text-white fw-semibold z-2000"
@@ -398,7 +400,7 @@ const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Group Tours
+                Devine Pathways
               </button>
               <ul className="dropdown-menu bg-white ">
                 {groupTours.map((trip, index) => (
@@ -417,22 +419,31 @@ const Navbar = () => {
               </ul>
             </div>
           </li>
-
-          {/* Regular Links */}
-          <li className="text-white fw-semibold" style={{ cursor: "pointer" }}>
-            <Link
-              href="/events-festivals"
-              className="text-white text-decoration-none nav-bottom-text"
-            >
-              Events & Festivals
-            </Link>
-          </li>
+          {/* WEEKEND GETAWAYS */}
           <li className="text-white fw-semibold" style={{ cursor: "pointer" }}>
             <Link
               href="/weekend-getaways"
               className="text-white text-decoration-none nav-bottom-text"
             >
               Weekend Getaways
+            </Link>
+          </li>
+          {/* ROMANTIC ESCAPES */}
+          <li className="text-white fw-semibold" style={{ cursor: "pointer" }}>
+            <Link
+              href="/romantic-escapes"
+              className="text-white text-decoration-none nav-bottom-text"
+            >
+              Romantic Escapes
+            </Link>
+          </li>
+          {/* INDIA HERITAGE */}
+          <li className="text-white fw-semibold" style={{ cursor: "pointer" }}>
+            <Link
+              href="/india-heritage"
+              className="text-white text-decoration-none nav-bottom-text"
+            >
+              India Heritage
             </Link>
           </li>
         </ul>

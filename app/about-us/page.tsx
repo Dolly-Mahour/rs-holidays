@@ -4,6 +4,10 @@ import React from "react";
 import "../../src/styles/about-us.css";
 
 const AboutUs = () => {
+  React.useEffect(() => {
+    document.title = "About Us | RS Holidays - Curated Travel Experiences";
+  }, []);
+
   const highlights = [
     {
       icon: "bi-compass",
@@ -129,7 +133,7 @@ const AboutUs = () => {
                 <div className="about-main-image">
                   <img
                     src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=90"
-                    alt="Traveller enjoying mountain view"
+                    alt="Traveller enjoying scenic mountain summit view with RS Holidays"
                   />
 
                   <div className="about-main-image-overlay"></div>
@@ -139,7 +143,8 @@ const AboutUs = () => {
                 <div className="about-floating-image about-floating-one">
                   <img
                     src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=700&q=90"
-                    alt="Hot air balloons"
+                    alt="Hot air balloon expedition over majestic landscape"
+                    loading="lazy"
                   />
                 </div>
 
@@ -147,7 +152,8 @@ const AboutUs = () => {
                 <div className="about-floating-image about-floating-two">
                   <img
                     src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=90"
-                    alt="Luxury tropical destination"
+                    alt="Luxury tropical beach and holiday resort destination"
+                    loading="lazy"
                   />
                 </div>
 

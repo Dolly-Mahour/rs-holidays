@@ -393,7 +393,11 @@ const UpcomingTrips = () => {
                       index === 0 ? "card-one" : "card-two"
                     }`}
                   >
-                    <img src={card.image} alt={card.title} />
+                    <img
+                      src={card.image}
+                      alt={`${card.title} - ${card.location} Upcoming Tour`}
+                      loading="lazy"
+                    />
 
                     <div className="destination-card-overlay" />
 
@@ -592,7 +596,11 @@ const UpcomingTrips = () => {
                     </svg>
                   </button>
 
-                  <img src={trip.image} alt={trip.title} />
+                  <img
+                    src={trip.image}
+                    alt={`${trip.title} - ${trip.location} Departure`}
+                    loading="lazy"
+                  />
                 </div>
 
                 {/* Card Body */}
@@ -690,7 +698,7 @@ const UpcomingTrips = () => {
                 explorers.
               </p>
               <Link
-                href="/group-tours"
+                href="/packages"
                 className="btn btn-light rounded-pill px-4 py-2 text-danger fw-bold shadow-sm d-inline-flex align-items-center gap-2"
               >
                 Explore All Trips &rarr;
@@ -702,17 +710,29 @@ const UpcomingTrips = () => {
               <div className="row g-2 justify-content-center">
                 <div className="col-4">
                   <div className="polaroid-frame polaroid-1">
-                    <img src="/images/ladakh.png" alt="Mountain View" />
+                    <img
+                      src="/images/ladakh.png"
+                      alt="Ladakh high altitude mountain pass adventure"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
                 <div className="col-4">
                   <div className="polaroid-frame polaroid-2">
-                    <img src="/images/spiti.png" alt="Campfire Friends" />
+                    <img
+                      src="/images/spiti.png"
+                      alt="Spiti valley road trip with friends"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
                 <div className="col-4">
                   <div className="polaroid-frame polaroid-3">
-                    <img src="/images/kashmir.png" alt="Tropical Bay" />
+                    <img
+                      src="/images/kashmir.png"
+                      alt="Kashmir valley scenic paradise tour"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>

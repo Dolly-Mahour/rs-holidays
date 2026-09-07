@@ -129,7 +129,8 @@ export default function PackagesPage() {
                   <div className="position-relative" style={{ height: "220px" }}>
                     <img
                       src={pkg.image}
-                      alt={pkg.title}
+                      alt={`${pkg.title} - ${pkg.state} Tour Package`}
+                      loading="lazy"
                       className="w-100 h-100 object-fit-cover"
                     />
                     <div className="position-absolute top-0 start-0 m-3 d-flex gap-2">

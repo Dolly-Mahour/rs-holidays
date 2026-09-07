@@ -87,6 +87,10 @@ export function WeekendGetaways() {
     },
   ];
 
+  React.useEffect(() => {
+    document.title = "Weekend Getaways from Delhi & Beyond | RS Holidays";
+  }, []);
+
   return (
     <div className="weekend-page-container">
 
@@ -95,7 +99,7 @@ export function WeekendGetaways() {
         <div className="weekend-hero-card">
           <img
             src="/images/weekend-top-banner.png"
-            alt="Weekend Getaways scenic banner"
+            alt="Weekend Getaways from Delhi - Scenic mountain tour packages by RS Holidays"
             className="weekend-hero-img"
           />
 
@@ -299,7 +303,8 @@ export function WeekendGetaways() {
               <div className="weekend-escape-img-box">
                 <img
                   src={card.image}
-                  alt={card.title}
+                  alt={`${card.title} - ${card.badge} Weekend Getaway Package`}
+                  loading="lazy"
                   className="weekend-escape-img"
                 />
                 <span className={`weekend-badge-pill ${card.badgeColor}`}>
