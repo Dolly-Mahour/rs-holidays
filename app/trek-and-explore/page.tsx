@@ -4,62 +4,62 @@ import "../../src/styles/corporate-tour.css";
 const CorporateTours = () => {
   const corporateTours = [
     {
-      title: "Bali Bliss Retreat",
-      location: "Bali, Indonesia",
+      title: "Himalayan Trekking Adventure",
+      location: "Himachal Pradesh, India",
       duration: "5 Days / 4 Nights",
-      price: "₹49,999",
+      price: "₹14,999",
       people: "15+",
       image:
-        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80",
     },
     {
-      title: "Singapore Getaway",
-      location: "Singapore",
+      title: "Manali Trek & Explore",
+      location: "Manali, Himachal Pradesh",
       duration: "4 Days / 3 Nights",
-      price: "₹54,999",
+      price: "₹11,999",
       people: "20+",
       image: "images/bali.png",
     },
     {
-      title: "Dubai Corporate Escape",
-      location: "Dubai, UAE",
-      duration: "5 Days / 4 Nights",
-      price: "₹44,999",
-      people: "25+",
+      title: "Ladakh Adventure Expedition",
+      location: "Ladakh, India",
+      duration: "6 Days / 5 Nights",
+      price: "₹24,999",
+      people: "12+",
       image:
-        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80",
     },
     {
-      title: "Thailand Team Trip",
-      location: "Thailand",
+      title: "Uttarakhand Trekking Escape",
+      location: "Uttarakhand, India",
       duration: "5 Days / 4 Nights",
-      price: "₹42,999",
+      price: "₹13,999",
       people: "18+",
       image:
-        "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=900&q=80",
     },
   ];
 
   const reasons = [
     {
-      icon: "👥",
-      title: "Team Bonding",
-      text: "Strengthen relationships through shared experiences.",
+      icon: "🥾",
+      title: "Amazing Trekking Trails",
+      text: "Explore scenic mountain trails, forests, valleys and breathtaking landscapes.",
     },
     {
-      icon: "🎯",
-      title: "Increased Productivity",
-      text: "Motivated teams lead to better collaboration and performance.",
+      icon: "🏔️",
+      title: "Adventure & Exploration",
+      text: "Experience thrilling treks and discover some of India's most beautiful destinations.",
     },
     {
-      icon: "🧳",
-      title: "Hassle-Free Planning",
-      text: "End-to-end travel management for a seamless experience.",
+      icon: "🧭",
+      title: "Expert Trip Planning",
+      text: "Enjoy carefully planned trekking itineraries, comfortable stays and seamless travel.",
     },
     {
       icon: "🛡️",
-      title: "Trusted & Safe",
-      text: "Safe, reliable and memorable journeys every time.",
+      title: "Safe & Memorable Journeys",
+      text: "Travel with reliable arrangements and support for a safe and unforgettable adventure.",
     },
   ];
 
@@ -74,23 +74,23 @@ const CorporateTours = () => {
             <div className="col-lg-6">
               <div className="corporate-hero-content">
                 <span className="corporate-eyebrow">
-                  CORPORATE <b>TOURS</b>
+                  TREK & <b>EXPLORE</b>
                 </span>
 
                 <h1>
-                  Corporate Tours 
-                  <span>& Team Outings</span>
+                  Trekking Tours
+                  <span>& Adventure Experiences</span>
                 </h1>
 
                 <p>
-                  Plan memorable corporate tours, team outings and company
-                  offsites with customized travel experiences designed for
-                  employee engagement, team bonding and stress-free group
-                  travel.
+                  Discover breathtaking mountains, scenic trails and exciting
+                  trekking destinations with Trek & Explore. Plan unforgettable
+                  trekking tours, hiking trips and adventure holidays across
+                  India's most beautiful landscapes.
                 </p>
 
                 <button className="corporate-primary-btn">
-                  Plan Your Corporate Tour
+                  Explore Trekking Tours
                   <span>→</span>
                 </button>
 
@@ -106,12 +106,12 @@ const CorporateTours = () => {
 
                 <img
                   src="/images/corporate-tour.png"
-                  alt="Corporate team retreat and offsite travel packages by RS Holidays"
+                  alt="Trekking tours and adventure travel packages in India"
                 />
 
                 <div className="hero-image-label">
-                  <small>TRAVEL TOGETHER</small>
-                  <strong>ACHIEVE TOGETHER</strong>
+                  <small>EXPLORE THE UNKNOWN</small>
+                  <strong>LIVE THE ADVENTURE</strong>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ const CorporateTours = () => {
 
               <div>
                 <small>DESTINATION</small>
-                <strong>Select Destination</strong>
+                <strong>Select Trek Destination</strong>
               </div>
 
               <span className="search-arrow">⌄</span>
@@ -142,8 +142,8 @@ const CorporateTours = () => {
               <div className="search-icon">♧</div>
 
               <div>
-                <small>TOUR TYPE</small>
-                <strong>Corporate Tour</strong>
+                <small>TRIP TYPE</small>
+                <strong>Trekking & Adventure</strong>
               </div>
 
               <span className="search-arrow">⌄</span>
@@ -164,14 +164,14 @@ const CorporateTours = () => {
 
             <button className="corporate-search-btn">
               <span>⌕</span>
-              Search Tours
+              Search Treks
             </button>
           </div>
         </div>
       </section>
 
       {/* =====================================================
-          WHY CORPORATE TOURS
+          WHY TREK & EXPLORE
       ===================================================== */}
       <section className="corporate-reasons py-5">
         <div className="container">
@@ -179,7 +179,7 @@ const CorporateTours = () => {
             <span>WHY CHOOSE</span>
 
             <h2>
-              CORPORATE <b>TOURS?</b>
+              TREK & <b>EXPLORE?</b>
             </h2>
 
             <div className="heading-line"></div>
@@ -190,7 +190,9 @@ const CorporateTours = () => {
               <div className="col-md-6 col-lg-3" key={index}>
                 <div className="reason-card">
                   <div
-                    className={`reason-icon ${index % 2 === 0 ? "red" : "blue"}`}
+                    className={`reason-icon ${
+                      index % 2 === 0 ? "red" : "blue"
+                    }`}
                   >
                     {reason.icon}
                   </div>
@@ -208,20 +210,22 @@ const CorporateTours = () => {
       </section>
 
       {/* =====================================================
-          POPULAR CORPORATE TOURS
+          POPULAR TREKKING TOURS
       ===================================================== */}
       <section className="corporate-tours py-5">
         <div className="container">
           <div className="section-top d-flex justify-content-between align-items-end mb-4">
             <div>
-              <span className="section-mini-title">EXPLORE WITH YOUR TEAM</span>
+              <span className="section-mini-title">
+                DISCOVER YOUR NEXT ADVENTURE
+              </span>
 
               <h2>
-                Popular <b>Corporate Tours</b>
+                Popular <b>Trekking Tours</b>
               </h2>
             </div>
 
-            <button className="view-all-btn">View All Tours →</button>
+            <button className="view-all-btn">View All Treks →</button>
           </div>
 
           <div className="row g-4">
@@ -231,19 +235,25 @@ const CorporateTours = () => {
                   <div className="tour-image">
                     <img
                       src={tour.image}
-                      alt={`${tour.title} - ${tour.location} Corporate Tour Package`}
+                      alt={`${tour.title} - ${tour.location} trekking and adventure tour package`}
                       loading="lazy"
                     />
 
-                    <span className="tour-location">📍 {tour.location}</span>
+                    <span className="tour-location">
+                      📍 {tour.location}
+                    </span>
 
-                    <span className="tour-people">👥 {tour.people}</span>
+                    <span className="tour-people">
+                      👥 {tour.people}
+                    </span>
                   </div>
 
                   <div className="tour-card-content">
                     <h3>{tour.title}</h3>
 
-                    <div className="tour-duration">◷ {tour.duration}</div>
+                    <div className="tour-duration">
+                      ◷ {tour.duration}
+                    </div>
 
                     <div className="tour-price">
                       <small>Starting from</small>
@@ -252,7 +262,7 @@ const CorporateTours = () => {
                     </div>
 
                     <button className="tour-btn">
-                      Explore Tour
+                      Explore Trek
                       <span>→</span>
                     </button>
                   </div>
@@ -271,26 +281,27 @@ const CorporateTours = () => {
       </section>
 
       {/* =====================================================
-          CORPORATE CTA
+          TREK & EXPLORE CTA
       ===================================================== */}
       <section className="corporate-cta-section">
         <div className="container">
           <div className="corporate-cta">
             <div className="cta-content">
-              <span>MAKE YOUR TEAM STRONGER</span>
+              <span>YOUR NEXT ADVENTURE STARTS HERE</span>
 
               <h2>
                 Let's Plan Your Next
-                <strong> Corporate Escape</strong>
+                <strong> Trekking Adventure</strong>
               </h2>
 
               <p>
-                From offsites to reward trips, we design experiences that your
-                team will cherish forever.
+                From weekend hikes to multi-day mountain expeditions, we create
+                memorable trekking experiences for adventure lovers, friends,
+                families and groups.
               </p>
 
               <button className="cta-btn">
-                Get a Custom Quote
+                Get a Custom Trek Plan
                 <span>→</span>
               </button>
             </div>
@@ -298,24 +309,24 @@ const CorporateTours = () => {
             <div className="cta-images">
               <div className="polaroid polaroid-one">
                 <img
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
-                  alt="Corporate team outing and leadership retreat"
+                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80"
+                  alt="Hiking and trekking adventure in the mountains"
                   loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-two">
                 <img
-                  src="https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=700&q=80"
-                  alt="Corporate workshop and team meeting offsite"
+                  src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=700&q=80"
+                  alt="Mountain trekking and outdoor adventure experience"
                   loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-three">
                 <img
-                  src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=700&q=80"
-                  alt="Corporate travel and adventure team bonding"
+                  src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=700&q=80"
+                  alt="Trekking through scenic mountain landscapes"
                   loading="lazy"
                 />
               </div>
@@ -332,14 +343,15 @@ const CorporateTours = () => {
           <div className="row g-4 align-items-stretch">
             <div className="col-lg-3">
               <div className="company-stat-card">
-                <span>TRUSTED BY COMPANIES</span>
+                <span>TRUSTED BY TRAVELLERS</span>
 
                 <strong>500+</strong>
 
-                <h4>Happy Corporates</h4>
+                <h4>Happy Adventurers</h4>
 
                 <p>
-                  Delivering exceptional corporate travel experiences worldwide.
+                  Creating memorable trekking and adventure travel experiences
+                  across incredible destinations.
                 </p>
               </div>
             </div>
@@ -349,16 +361,17 @@ const CorporateTours = () => {
                 <div className="quote-mark">“</div>
 
                 <p>
-                  RS Holidays planned the perfect offsite for our team.
-                  Everything was seamless and the experience was unforgettable!
+                  Our trek was perfectly planned from start to finish. The
+                  route, stay and travel arrangements were seamless, making the
+                  entire mountain adventure truly unforgettable!
                 </p>
 
                 <div className="testimonial-author">
-                  <div className="author-avatar">HR</div>
+                  <div className="author-avatar">TR</div>
 
                   <div>
-                    <strong>HR Manager</strong>
-                    <span>Tech Solutions Pvt. Ltd.</span>
+                    <strong>Adventure Traveller</strong>
+                    <span>Trek & Explore Guest</span>
                   </div>
                 </div>
               </div>
@@ -367,12 +380,12 @@ const CorporateTours = () => {
             <div className="col-lg-3">
               <div className="stats-small-wrapper">
                 <div className="small-stat">
-                  <span>CLIENT SATISFACTION</span>
+                  <span>TRAVELLER SATISFACTION</span>
                   <strong>98%</strong>
                 </div>
 
                 <div className="small-stat">
-                  <span>YEARS EXPERIENCE</span>
+                  <span>YEARS OF TRAVEL EXPERIENCE</span>
                   <strong>10+</strong>
                 </div>
               </div>
@@ -387,19 +400,19 @@ const CorporateTours = () => {
       <section className="corporate-final-cta">
         <div className="container">
           <div className="final-cta-inner text-center">
-            <span>READY TO TRAVEL TOGETHER?</span>
+            <span>READY FOR YOUR NEXT ADVENTURE?</span>
 
             <h2>
-              Your Team Deserves
-              <strong> A Great Journey.</strong>
+              Explore More.
+              <strong> Trek Further.</strong>
             </h2>
 
             <p>
-              Tell us your requirements and we'll create a corporate travel
-              experience around your team.
+              Tell us your preferred destination, travel dates and adventure
+              style, and we'll help you plan an unforgettable trekking trip.
             </p>
 
-            <button>Plan My Corporate Trip →</button>
+            <button>Plan My Trekking Trip →</button>
           </div>
         </div>
       </section>
