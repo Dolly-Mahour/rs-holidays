@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/navbar.css";
 import Link from "next/link";
-import type { Modal } from "bootstrap";
+import type { Modal, Toast } from "bootstrap";
 import CurrencySelector from "./currency-selector";
 
 const internationalTrips = [
@@ -67,19 +67,28 @@ const Navbar = () => {
   const bsModalInstance = useRef<Modal | null>(null);
 
   useEffect(() => {
-    // Bootstrap's JS touches `document`/`window`, so it can only run in the browser.
-    // Dynamic import + useEffect guarantees this never executes during SSR.
     let isMounted = true;
 
     import("bootstrap/dist/js/bootstrap.bundle.min.js").then((bootstrap) => {
-      if (isMounted && modalRef.current) {
+      if (!isMounted) return;
+
+      if (modalRef.current) {
         bsModalInstance.current = new bootstrap.Modal(modalRef.current);
+      }
+
+      if (toastRef.current) {
+        toastInstance.current = new bootstrap.Toast(toastRef.current, {
+          autohide: true,
+          delay: 3000,
+        });
       }
     });
 
     return () => {
       isMounted = false;
+
       bsModalInstance.current?.dispose();
+      toastInstance.current?.dispose();
     };
   }, []);
 
@@ -102,9 +111,83 @@ const Navbar = () => {
       setIsRegisterForm(false);
     }
   }
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastBg, setToastBg] = useState("");
+  const toastRef = useRef<HTMLDivElement | null>(null);
+  const toastInstance = useRef<Toast | null>(null);
+  function showToast(message: string, color: string) {
+    console.log("showToast called with message:", message, "and color:", color);
+    setToastMessage(message);
+    setToastBg(color);
+
+    setTimeout(() => {
+      toastInstance.current?.show();
+    }, 100);
+  }
+  function handleLoginClick(formData: FormData) {
+    console.log(
+      "Login clicked",
+      formData.get("email"),
+      formData.get("password"),
+      formData.get("role"),
+    );
+    if (
+      formData.get("email") === "" ||
+      formData.get("password") === "" ||
+      formData.get("role") === ""
+    ) {
+      showToast("Please fill in all fields.", "bg-danger");
+    } else {
+      showToast("Login successful!", "bg-success");
+      if (formData.get("role") === "agent") {
+        window.location.href = "/agent-dashboard";
+      }
+      else{
+        window.location.href = "/user-dashboard";
+      }
+    }
+  }
+  function handleRegisterClick(formData: FormData) {
+    console.log(
+      "Register clicked",
+      formData.get("email"),
+      formData.get("password"),
+      formData.get("role"),
+    );
+    if (
+      formData.get("email") === "" ||
+      formData.get("password") === "" ||
+      formData.get("role") === ""
+    ) {
+      showToast("Please fill in all fields.", "bg-danger");
+    } else {
+      showToast("Registration successful!", "bg-success");
+    }
+  }
 
   return (
     <div className="w-100 font-sans position-relative  ">
+      <div
+        ref={toastRef}
+        className={`toast ${toastBg} position-fixed bottom-0 end-0 m-3`}
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        style={{ zIndex: 99999 }}
+      >
+        {/* <div className="toast-header"> */}
+          {/* <img src="..." className="rounded me-2" alt="..." /> */}
+          {/* <strong className="me-auto">Bootstrap</strong> */}
+          {/* <small>11 mins ago</small> */}
+          {/* <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button> */}
+        {/* </div> */}
+        <div className="toast-body text-white fw-bold fs-5">{toastMessage}</div>
+      </div>
       {/* Top Bar Wrapper */}
       <div className="bg-white border-bottom py-3 px-3 px-md-5">
         {/* DESKTOP LAYOUT (Hidden on small screens < 992px) */}
@@ -157,17 +240,17 @@ const Navbar = () => {
               Packages 🎒
             </Link>
             <Link
-              href="/upcoming-trips"
+              href="/last-minute-trips"
               className="text-decoration-none text-dark fw-medium nav-link-hover nav-top-text"
             >
-              Upcoming Trips
+              Last Minute Trips
             </Link>
             <Link
-              href="/trek-and-explore"
+              href="/luxury-packages"
               onClick={closeMobileMenu}
               className="text-decoration-none text-dark fw-medium nav-link-hover py-1 nav-top-text"
             >
-              Trek & Explore
+              Luxury Packages
             </Link>
             <Link
               href="/blogs"
@@ -287,11 +370,11 @@ const Navbar = () => {
                 Upcoming Trips 📅
               </Link>
               <Link
-                href="/trek-and-explore"
+                href="/luxury-packages"
                 onClick={closeMobileMenu}
                 className="text-decoration-none text-dark fw-medium nav-link-hover py-1 nav-top-text"
               >
-                Trek & Explore
+                Luxury Packages
               </Link>
               <Link
                 href="/blogs"
@@ -493,7 +576,10 @@ const Navbar = () => {
                 Register
               </h3>
             </div>
-            <form action="post">
+            <form
+              action={isLoginForm ? handleLoginClick : handleRegisterClick}
+              className="d-flex flex-column"
+            >
               {isRegisterForm && (
                 <>
                   <label className="form-label" htmlFor="">
@@ -503,6 +589,7 @@ const Navbar = () => {
                     className="mb-3 form-control"
                     placeholder="name"
                     type="text"
+                    name="username"
                   />
                   <label className="form-label" htmlFor="">
                     Email
@@ -511,6 +598,7 @@ const Navbar = () => {
                     className="mb-3 form-control"
                     placeholder="email"
                     type="text"
+                    name="email"
                   />
                   <label className="form-label" htmlFor="">
                     Password
@@ -519,8 +607,29 @@ const Navbar = () => {
                     className="mb-3 form-control"
                     placeholder="password"
                     type="password"
+                    name="password"
                   />
+                  <label className="form-label" htmlFor="">
+                    Select Role
+                  </label>
+                  <select
+                    defaultValue=""
+                    className="mb-3 form-control"
+                    name="role"
+                  >
+                    <option
+                      value=""
+                      className="text-secondary"
+                      disabled
+                      selected
+                    >
+                      select a role
+                    </option>
+                    <option value="user">User</option>
+                    <option value="admin">Agent</option>
+                  </select>
                   <button
+                    data-bs-dismiss="modal"
                     type="submit"
                     className="btn bg-rs-gradient text-white mb-3 w-100"
                   >
@@ -537,6 +646,7 @@ const Navbar = () => {
                     className="mb-3 form-control"
                     placeholder="email"
                     type="text"
+                    name="email"
                   />
                   <label className="form-label" htmlFor="">
                     Password
@@ -545,8 +655,29 @@ const Navbar = () => {
                     className="mb-3 form-control"
                     placeholder="password"
                     type="password"
+                    name="password"
                   />
+                  <label className="form-label" htmlFor="">
+                    Select Role
+                  </label>
+                  <select
+                    defaultValue=""
+                    className="mb-3 form-control"
+                    name="role"
+                  >
+                    <option
+                      value=""
+                      className="text-secondary"
+                      disabled
+                      selected
+                    >
+                      select a role
+                    </option>
+                    <option value="user">User</option>
+                    <option value="admin">Agent</option>
+                  </select>
                   <button
+                    data-bs-dismiss="modal"
                     type="submit"
                     className="btn bg-rs-gradient text-white mb-3 w-100"
                   >
