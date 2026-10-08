@@ -1,6 +1,6 @@
 'use client'
 import React, { useMemo, useState } from "react";
-import "../../src/styles/blogs.css";
+import "@/src/styles/blogs.css";
 
 const blogPosts = [
   {

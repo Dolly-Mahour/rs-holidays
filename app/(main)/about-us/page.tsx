@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import "../../src/styles/about-us.css";
+import "@/src/styles/about-us.css";
 
 const AboutUs = () => {
   React.useEffect(() => {

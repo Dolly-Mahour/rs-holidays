@@ -18,7 +18,7 @@ import {
   Sparkles,
   ArrowLeft,
 } from "lucide-react";
-import "../../src/styles/weekend-getaways.css";
+import "@/src/styles/weekend-getaways.css";
 
 export function WeekendGetaways() {
   const whyChooseItems = [

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../src/styles/corporate-tour.css";
+import "@/src/styles/corporate-tour.css";
 
 const CorporateTours = () => {
   const corporateTours = [

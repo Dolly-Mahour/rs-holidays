@@ -98,7 +98,13 @@ const structuredData = {
   ],
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -107,18 +113,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
         />
       </head>
+
       <body className="min-h-full flex flex-col">
         <CurrencyProvider>
-          <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-            <Navbar />
-            <main className="w-100">{children}</main>
-            <Footer />
-          </div>
+          {children}
         </CurrencyProvider>
       </body>
     </html>
   );
 }
+

@@ -25,7 +25,7 @@ import {
   Hotel,
   CheckCircle2,
 } from "lucide-react";
-import "../../src/styles/romantic-escapes.css";
+import "@/src/styles/romantic-escapes.css";
 
 interface PackageItem {
   id: number;

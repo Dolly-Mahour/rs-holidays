@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import "../../src/styles/upcoming-trips.css";
+import "@/src/styles/upcoming-trips.css";
 
 const tripPackages = [
   {

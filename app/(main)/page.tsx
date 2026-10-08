@@ -1,11 +1,11 @@
 import React from "react";
 // import "../styles/Home.css";
-import ReusableTripsCarousel from "../src/components/reusable-trips-carousel";
-import Banner from "../src/components/banner";
-import WhyChooseUse from "../src/components/why-choose-us";
-import OurJourneys from "../src/components/our-journeys";
+import ReusableTripsCarousel from "../../src/components/reusable-trips-carousel";
+import Banner from "../../src/components/banner";
+import WhyChooseUse from "../../src/components/why-choose-us";
+import OurJourneys from "../../src/components/our-journeys";
 // import Map from "../src/components/t";
-import TripsMap from "../src/components/trips-map";
+import TripsMap from "../../src/components/trips-map";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
