@@ -1,0 +1,247 @@
+/* =====================================================
+   last-minute-trips.css — RS Holidays Last Minute Trips Page
+   Complementary styles matching the exact theme of the site
+===================================================== */
+
+/* ── Hero Container Stacking Context ── */
+.upcoming-hero {
+  position: relative;
+  z-index: 1;
+}
+
+.upcoming-hero-overlay {
+  z-index: 1 !important;
+}
+
+.hero-content-container {
+  position: relative;
+  z-index: 10 !important;
+}
+
+/* ── Hero Bright Floating Cards (Over Backdrop, No Dimming Overlay) ── */
+.hero-bright-cards-wrap {
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-right: -40px;
+  position: relative;
+  z-index: 10;
+  animation: cardsIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardsIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-bright-card {
+  position: relative;
+  width: 210px;
+  height: 320px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.15);
+  background-color: #0b1e36;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  z-index: 10;
+}
+
+.hero-bright-card.card-one {
+  transform: translateY(-25px) rotate(-1.5deg);
+  z-index: 12;
+}
+
+.hero-bright-card.card-two {
+  transform: translateY(25px) rotate(1.5deg);
+  z-index: 11;
+}
+
+.hero-bright-card:hover {
+  transform: translateY(-8px) scale(1.05) rotate(0deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65), 0 0 25px rgba(255, 255, 255, 0.25);
+  z-index: 15;
+}
+
+/* Bright, vibrant image with NO dark layout/overlay covering it */
+.hero-bright-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(1.06) contrast(1.04);
+  transition: transform 0.6s ease;
+}
+
+.hero-bright-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Top Urgency Badge */
+.hero-bright-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #e30613;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 50rem;
+  letter-spacing: 0.3px;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(227, 6, 19, 0.45);
+  white-space: nowrap;
+}
+
+/* Bottom Text with subtle gradient shadow ONLY behind text */
+.hero-bright-card-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 14px 14px 14px;
+  background: linear-gradient(
+    to top,
+    rgba(11, 30, 54, 0.95) 0%,
+    rgba(11, 30, 54, 0.65) 55%,
+    rgba(11, 30, 54, 0) 100%
+  );
+  z-index: 5;
+}
+
+.hero-bright-card-info span.location {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-bright-card-info h4 {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-bright-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-bright-price-tag {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-bright-sub-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Card Urgency Badges (for Carousel items) ── */
+.trip-card-urgency {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e30613;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(227, 6, 19, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+
+.trip-card-urgency.orange {
+  background: #ea580c;
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.35);
+}
+
+.trip-card-urgency.blue {
+  background: #1e3a8a;
+  box-shadow: 0 4px 10px rgba(30, 58, 138, 0.35);
+}
+
+.trip-card-original-price {
+  font-size: 11px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  margin-right: 4px;
+}
+
+/* ── FAQ Section (Theme Aligned) ── */
+.lastminute-faq-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.lastminute-faq-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+.lastminute-faq-header {
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b1e36;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.lastminute-faq-body {
+  padding: 0 20px 18px 20px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 991px) {
+  .hero-bright-cards-wrap {
+    justify-content: center;
+    margin-right: 0;
+    margin-top: 30px;
+  }
+}

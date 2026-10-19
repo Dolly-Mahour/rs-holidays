@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "RS Holidays - Curated Holiday Packages & Adventure Trips",
+    default: "RS Holidays",
     template: "%s | RS Holidays",
   },
   description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "RS Holidays - Curated Holiday Packages & Adventure Trips",
+    title: "RS Holidays",
     description:
       "Plan your perfect vacation with RS Holidays. Explore curated holiday packages, trekking adventures, and memorable travel experiences.",
     url: "/",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RS Holidays - Curated Holiday Packages & Adventure Trips",
+    title: "RS Holidays",
     description:
       "Plan your perfect vacation with RS Holidays. Explore curated holiday packages, trekking adventures, and memorable travel experiences.",
     images: ["/images/banner-bg.png"],

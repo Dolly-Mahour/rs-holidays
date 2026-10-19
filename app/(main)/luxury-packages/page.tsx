@@ -1,65 +1,62 @@
 import React from "react";
 import "@/src/styles/corporate-tour.css";
 
-const CorporateTours = () => {
-  const corporateTours = [
+const LuxuryPackages = () => {
+  const luxuryTours = [
     {
-      title: "Himalayan Trekking Adventure",
-      location: "Himachal Pradesh, India",
-      duration: "5 Days / 4 Nights",
-      price: "₹14,999",
-      people: "15+",
-      image:
-        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      title: "Manali Trek & Explore",
-      location: "Manali, Himachal Pradesh",
-      duration: "4 Days / 3 Nights",
-      price: "₹11,999",
-      people: "20+",
-      image: "images/bali.png",
-    },
-    {
-      title: "Ladakh Adventure Expedition",
-      location: "Ladakh, India",
+      title: "Royal Rajasthan Palace Retreat",
+      location: "Udaipur & Jaipur, India",
       duration: "6 Days / 5 Nights",
-      price: "₹24,999",
-      people: "12+",
-      image:
-        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80",
+      price: "₹89,999",
+      people: "Private VIP",
+      image: "/images/udaipur-kumbhalgarh.png",
     },
     {
-      title: "Uttarakhand Trekking Escape",
-      location: "Uttarakhand, India",
+      title: "Maldives Private Island & Water Villa",
+      location: "Maldives",
       duration: "5 Days / 4 Nights",
-      price: "₹13,999",
-      people: "18+",
-      image:
-        "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=900&q=80",
+      price: "₹1,85,000",
+      people: "Exclusive Couple",
+      image: "/images/maldives.png",
+    },
+    {
+      title: "Kashmir Luxury Houseboat & Gulmarg Ski",
+      location: "Srinagar & Gulmarg, India",
+      duration: "5 Days / 4 Nights",
+      price: "₹64,999",
+      people: "Chauffeur Driven",
+      image: "/images/kashmir-paradise.png",
+    },
+    {
+      title: "Dubai Signature Sky & Desert Villa",
+      location: "Dubai, UAE",
+      duration: "5 Days / 4 Nights",
+      price: "₹1,25,000",
+      people: "VIP Concierge",
+      image: "/images/dubai.png",
     },
   ];
 
   const reasons = [
     {
-      icon: "🥾",
-      title: "Amazing Trekking Trails",
-      text: "Explore scenic mountain trails, forests, valleys and breathtaking landscapes.",
+      icon: "💎",
+      title: "5-Star & Heritage Stays",
+      text: "Handpicked luxury resorts, royal palaces, private villas, and bespoke suites offering unmatched comfort.",
     },
     {
-      icon: "🏔️",
-      title: "Adventure & Exploration",
-      text: "Experience thrilling treks and discover some of India's most beautiful destinations.",
+      icon: "🥂",
+      title: "Curated Bespoke Itineraries",
+      text: "Every moment customized to your taste—from private yacht charters to exclusive candlelit dining under the stars.",
     },
     {
-      icon: "🧭",
-      title: "Expert Trip Planning",
-      text: "Enjoy carefully planned trekking itineraries, comfortable stays and seamless travel.",
+      icon: "🛎️",
+      title: "Dedicated Personal Concierge",
+      text: "Enjoy seamless 24/7 VIP assistance, private luxury transfers, and expedited airport check-ins.",
     },
     {
-      icon: "🛡️",
-      title: "Safe & Memorable Journeys",
-      text: "Travel with reliable arrangements and support for a safe and unforgettable adventure.",
+      icon: "✨",
+      title: "Exclusive Privilege & Privacy",
+      text: "Experience uncrowded retreats, private viewings, and confidential white-glove service throughout your journey.",
     },
   ];
 
@@ -74,23 +71,23 @@ const CorporateTours = () => {
             <div className="col-lg-6">
               <div className="corporate-hero-content">
                 <span className="corporate-eyebrow">
-                  TREK & <b>EXPLORE</b>
+                  LUXURY & <b>BESPOKE TRAVEL</b>
                 </span>
 
                 <h1>
-                  Trekking Tours
-                  <span>& Adventure Experiences</span>
+                  Curated Luxury Escapes
+                  <span>& Handcrafted Holidays</span>
                 </h1>
 
                 <p>
-                  Discover breathtaking mountains, scenic trails and exciting
-                  trekking destinations with Trek & Explore. Plan unforgettable
-                  trekking tours, hiking trips and adventure holidays across
-                  India's most beautiful landscapes.
+                  Indulge in world-class hospitality, private charters, iconic
+                  5-star palatial retreats, and tailor-made journeys designed
+                  for the discerning traveler. Discover the art of effortless
+                  luxury with RS Holidays.
                 </p>
 
                 <button className="corporate-primary-btn">
-                  Explore Trekking Tours
+                  Explore Luxury Collections
                   <span>→</span>
                 </button>
 
@@ -106,12 +103,12 @@ const CorporateTours = () => {
 
                 <img
                   src="/images/corporate-tour.png"
-                  alt="Trekking tours and adventure travel packages in India"
+                  alt="Curated luxury holiday packages, 5-star resorts and bespoke travel experiences"
                 />
 
                 <div className="hero-image-label">
-                  <small>EXPLORE THE UNKNOWN</small>
-                  <strong>LIVE THE ADVENTURE</strong>
+                  <small>ELEVATE YOUR JOURNEY</small>
+                  <strong>THE PINNACLE OF LUXURY</strong>
                 </div>
               </div>
             </div>
@@ -130,7 +127,7 @@ const CorporateTours = () => {
 
               <div>
                 <small>DESTINATION</small>
-                <strong>Select Trek Destination</strong>
+                <strong>Select Luxury Destination</strong>
               </div>
 
               <span className="search-arrow">⌄</span>
@@ -142,8 +139,8 @@ const CorporateTours = () => {
               <div className="search-icon">♧</div>
 
               <div>
-                <small>TRIP TYPE</small>
-                <strong>Trekking & Adventure</strong>
+                <small>EXPERIENCE TYPE</small>
+                <strong>Palaces, Villas & Resorts</strong>
               </div>
 
               <span className="search-arrow">⌄</span>
@@ -156,7 +153,7 @@ const CorporateTours = () => {
 
               <div>
                 <small>DURATION</small>
-                <strong>Any Duration</strong>
+                <strong>Custom Duration</strong>
               </div>
 
               <span className="search-arrow">⌄</span>
@@ -164,14 +161,14 @@ const CorporateTours = () => {
 
             <button className="corporate-search-btn">
               <span>⌕</span>
-              Search Treks
+              Search Luxury Packages
             </button>
           </div>
         </div>
       </section>
 
       {/* =====================================================
-          WHY TREK & EXPLORE
+          WHY RS LUXURY COLLECTION
       ===================================================== */}
       <section className="corporate-reasons py-5">
         <div className="container">
@@ -179,7 +176,7 @@ const CorporateTours = () => {
             <span>WHY CHOOSE</span>
 
             <h2>
-              TREK & <b>EXPLORE?</b>
+              RS LUXURY <b>COLLECTION?</b>
             </h2>
 
             <div className="heading-line"></div>
@@ -210,32 +207,32 @@ const CorporateTours = () => {
       </section>
 
       {/* =====================================================
-          POPULAR TREKKING TOURS
+          POPULAR LUXURY ESCAPES
       ===================================================== */}
       <section className="corporate-tours py-5">
         <div className="container">
           <div className="section-top d-flex justify-content-between align-items-end mb-4">
             <div>
               <span className="section-mini-title">
-                DISCOVER YOUR NEXT ADVENTURE
+                SIGNATURE EXPERIENCES
               </span>
 
               <h2>
-                Popular <b>Trekking Tours</b>
+                Popular <b>Luxury Escapes</b>
               </h2>
             </div>
 
-            <button className="view-all-btn">View All Treks →</button>
+            <button className="view-all-btn">View All Collections →</button>
           </div>
 
           <div className="row g-4">
-            {corporateTours.map((tour, index) => (
+            {luxuryTours.map((tour, index) => (
               <div className="col-sm-6 col-lg-3" key={index}>
                 <article className="corporate-tour-card">
                   <div className="tour-image">
                     <img
                       src={tour.image}
-                      alt={`${tour.title} - ${tour.location} trekking and adventure tour package`}
+                      alt={`${tour.title} - ${tour.location} luxury travel package`}
                       loading="lazy"
                     />
 
@@ -262,7 +259,7 @@ const CorporateTours = () => {
                     </div>
 
                     <button className="tour-btn">
-                      Explore Trek
+                      Explore Package
                       <span>→</span>
                     </button>
                   </div>
@@ -281,27 +278,27 @@ const CorporateTours = () => {
       </section>
 
       {/* =====================================================
-          TREK & EXPLORE CTA
+          BESPOKE LUXURY CTA
       ===================================================== */}
       <section className="corporate-cta-section">
         <div className="container">
           <div className="corporate-cta">
             <div className="cta-content">
-              <span>YOUR NEXT ADVENTURE STARTS HERE</span>
+              <span>YOUR BESPOKE JOURNEY AWAITS</span>
 
               <h2>
-                Let's Plan Your Next
-                <strong> Trekking Adventure</strong>
+                Let's Design Your Next
+                <strong> Signature Luxury Holiday</strong>
               </h2>
 
               <p>
-                From weekend hikes to multi-day mountain expeditions, we create
-                memorable trekking experiences for adventure lovers, friends,
-                families and groups.
+                From private island hideaways to royal heritage suites, our
+                bespoke travel designers craft every detail to perfection for
+                couples, families and VIP groups.
               </p>
 
               <button className="cta-btn">
-                Get a Custom Trek Plan
+                Request a Private Itinerary
                 <span>→</span>
               </button>
             </div>
@@ -309,24 +306,24 @@ const CorporateTours = () => {
             <div className="cta-images">
               <div className="polaroid polaroid-one">
                 <img
-                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80"
-                  alt="Hiking and trekking adventure in the mountains"
+                  src="/images/romantic-royal.jpg"
+                  alt="Royal heritage luxury palace suite stay"
                   loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-two">
                 <img
-                  src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=700&q=80"
-                  alt="Mountain trekking and outdoor adventure experience"
+                  src="/images/maldives.png"
+                  alt="Overwater luxury villa in the Maldives"
                   loading="lazy"
                 />
               </div>
 
               <div className="polaroid polaroid-three">
                 <img
-                  src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=700&q=80"
-                  alt="Trekking through scenic mountain landscapes"
+                  src="/images/romantic-international.jpg"
+                  alt="Luxury international private holiday experience"
                   loading="lazy"
                 />
               </div>
@@ -345,13 +342,13 @@ const CorporateTours = () => {
               <div className="company-stat-card">
                 <span>TRUSTED BY TRAVELLERS</span>
 
-                <strong>500+</strong>
+                <strong>1,200+</strong>
 
-                <h4>Happy Adventurers</h4>
+                <h4>Luxury Journeys Delivered</h4>
 
                 <p>
-                  Creating memorable trekking and adventure travel experiences
-                  across incredible destinations.
+                  Delivering five-star bespoke holiday experiences across the
+                  world's most breathtaking destinations.
                 </p>
               </div>
             </div>
@@ -361,17 +358,18 @@ const CorporateTours = () => {
                 <div className="quote-mark">“</div>
 
                 <p>
-                  Our trek was perfectly planned from start to finish. The
-                  route, stay and travel arrangements were seamless, making the
-                  entire mountain adventure truly unforgettable!
+                  From the private luxury transfers to the exquisite palace
+                  suite in Udaipur, every detail was orchestrated with sheer
+                  perfection. Truly a benchmark for ultra-luxury travel in
+                  India!
                 </p>
 
                 <div className="testimonial-author">
-                  <div className="author-avatar">TR</div>
+                  <div className="author-avatar">RS</div>
 
                   <div>
-                    <strong>Adventure Traveller</strong>
-                    <span>Trek & Explore Guest</span>
+                    <strong>Rajesh &amp; Sunita Mehra</strong>
+                    <span>Private Luxury Clients</span>
                   </div>
                 </div>
               </div>
@@ -380,13 +378,13 @@ const CorporateTours = () => {
             <div className="col-lg-3">
               <div className="stats-small-wrapper">
                 <div className="small-stat">
-                  <span>TRAVELLER SATISFACTION</span>
-                  <strong>98%</strong>
+                  <span>GUEST SATISFACTION</span>
+                  <strong>99.4%</strong>
                 </div>
 
                 <div className="small-stat">
-                  <span>YEARS OF TRAVEL EXPERIENCE</span>
-                  <strong>10+</strong>
+                  <span>GLOBAL 5★ HOSPITALITY PARTNERS</span>
+                  <strong>150+</strong>
                 </div>
               </div>
             </div>
@@ -400,19 +398,20 @@ const CorporateTours = () => {
       <section className="corporate-final-cta">
         <div className="container">
           <div className="final-cta-inner text-center">
-            <span>READY FOR YOUR NEXT ADVENTURE?</span>
+            <span>EXPERIENCE THE EXCEPTIONAL</span>
 
             <h2>
-              Explore More.
-              <strong> Trek Further.</strong>
+              Travel Beyond The Ordinary.
+              <strong> In Pure Luxury.</strong>
             </h2>
 
             <p>
-              Tell us your preferred destination, travel dates and adventure
-              style, and we'll help you plan an unforgettable trekking trip.
+              Tell us your dream destination, travel dates and preferred
+              indulgences. Our luxury travel consultants will curate a bespoke
+              proposal tailored exclusively for you.
             </p>
 
-            <button>Plan My Trekking Trip →</button>
+            <button>Plan My Luxury Escape →</button>
           </div>
         </div>
       </section>
@@ -420,4 +419,4 @@ const CorporateTours = () => {
   );
 };
 
-export default CorporateTours;
+export default LuxuryPackages;
